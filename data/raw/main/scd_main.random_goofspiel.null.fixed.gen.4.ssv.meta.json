@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "run_id": "paper-main-random_goofspiel-k4",
+  "status": "complete",
+  "return_code": 0,
+  "failure_reason": null,
+  "config": {
+    "experiment_family": "SCD_main",
+    "algorithm_group": "scd_main",
+    "alg_group": 11,
+    "algorithms": [
+      "CFR",
+      "1-SCD",
+      "2-SCD",
+      "4-SCD",
+      "A-EFR_IN",
+      "CSPS-EFR",
+      "BEHAV-EFR"
+    ],
+    "opponent_pool": [
+      "CFR",
+      "1-SCD",
+      "2-SCD",
+      "4-SCD",
+      "A-EFR_IN",
+      "CSPS-EFR",
+      "BEHAV-EFR"
+    ],
+    "game": "random_goofspiel",
+    "game_definition": "goofspiel(imp_info=True,num_cards=4,points_order=random)",
+    "scd_budget": 4,
+    "iterations": 1000,
+    "mode": "fixed",
+    "sampler": "null",
+    "cfr_plus": false,
+    "threads_per_run": 4,
+    "max_parallel_jobs": 8,
+    "epsilon": 0.0,
+    "sequential": null,
+    "causal": null,
+    "algorithm_settings": {
+      "CFR": {
+        "cfr_plus": false,
+        "epsilon": 0.0,
+        "predecessors": "ImmediateExternalSequencePredecessors"
+      },
+      "1-SCD": {
+        "cfr_plus": false,
+        "epsilon": 0.0,
+        "scd_budget": 1,
+        "sequential": false,
+        "causal": false,
+        "predecessors": "SCDPredecessors"
+      },
+      "2-SCD": {
+        "cfr_plus": false,
+        "epsilon": 0.0,
+        "scd_budget": 2,
+        "sequential": false,
+        "causal": false,
+        "predecessors": "SCDPredecessors"
+      },
+      "4-SCD": {
+        "cfr_plus": false,
+        "epsilon": 0.0,
+        "scd_budget": 4,
+        "sequential": false,
+        "causal": false,
+        "predecessors": "SCDPredecessors"
+      },
+      "A-EFR_IN": {
+        "cfr_plus": false,
+        "epsilon": 0.0,
+        "predecessors": "InformedActionSequencePredecessors"
+      },
+      "CSPS-EFR": {
+        "cfr_plus": false,
+        "epsilon": 0.0,
+        "predecessors": "CausalPartialSequencePredecessors"
+      },
+      "BEHAV-EFR": {
+        "cfr_plus": false,
+        "epsilon": 0.0,
+        "predecessors": "BehavioralPredecessors"
+      }
+    },
+    "analysis_opponent_pool": [
+      "CFR",
+      "1-SCD",
+      "2-SCD",
+      "4-SCD",
+      "A-EFR_IN",
+      "CSPS-EFR",
+      "BEHAV-EFR"
+    ],
+    "round_semantics": "pre_update_ev_then_update_every_round",
+    "runtime_scope": "row value tree evaluation and policy update; excludes column self-play, metric reads, output and audit",
+    "diagnostic_scope": "PhiRegrets and untruncated retained local regret reads, timed separately",
+    "record_format": "tournament_tuple_5",
+    "regret_definition": "maximum positive maintained local EX/IN cumulative regret, maximized over seats and information sets",
+    "raw_regret_accumulator": "stage_original, initialized at construction and never reset in fixed tournament",
+    "code_head": "archived-paper-engine-v1",
+    "source_hashes": {
+      "hr_edl/src/bin/ltbr.h": "9011adc1383032f2e34cb15ac3b0fe433c9c7eb98b0c687fa8da370aebb4b40d",
+      "hr_edl/src/bin/run_fixed_ltbr.cc": "b238b81abdcf79e1dc5a48fa8834d86c013ef3ddfa12d204744e64146b0258ae",
+      "hr_edl/src/hr_edl/action_transformation.h": "bdd6043c5f6e737c0fa324c195b593b249ef8f567e667c50732590db42e32e2b",
+      "hr_edl/src/hr_edl/action_transformation_test.cc": "673f1be8613f7df79d0d456e01251ee6d7db2da2e985cc0d3d7c21b52e404248",
+      "hr_edl/src/hr_edl/adaptive_profile.h": "4976302c7429fb82a7e26064627d01191b17c4146ceb8791b6d085f03c6e6fe2",
+      "hr_edl/src/hr_edl/best_response.cc": "142610735cd2ce2633c2c1c8b5de21c4bbc2583090d86980009773d8d87d060a",
+      "hr_edl/src/hr_edl/best_response.h": "34fbc76e12a5a9edf984b2d5b7084c7d6af830676f93ddacde4740b12033c0a9",
+      "hr_edl/src/hr_edl/best_response_test.cc": "1fb62719f56b59d30e0b08cd1a2f574f5c0cca8b36dc7b6b4acf7f8a922c4cb3",
+      "hr_edl/src/hr_edl/containers.h": "f53fa37d147e50a6019ce17f983cf7544d4410c8f039bbda655308883c7ba206",
+      "hr_edl/src/hr_edl/decision_point.cc": "7d24f53e80cb50b6583ce3fd77ba03968c9993521639ea61d0d874f8fdcdc280",
+      "hr_edl/src/hr_edl/decision_point.h": "761f0aa7d7a93239b3b37ab0223f6c5b9b2686a2fa9444e4540abf5657ea7d28",
+      "hr_edl/src/hr_edl/decision_point_test.cc": "814030a54bf71fc25f1e86f6ed58ca102212a8e19adb9b4d036da03071c33980",
+      "hr_edl/src/hr_edl/enumeration.h": "e452945a4a6e902a0690795042a93bef7a3931788707490f9c2d7b799054f3a4",
+      "hr_edl/src/hr_edl/math.cc": "5ee1ba98a74449a143a0ea401fd425871635b77a628e1dd3c9b24710f78a5630",
+      "hr_edl/src/hr_edl/math.h": "36a7dae7174e1433e6ef10a764b1b4eba6eff7bab1d82c67d0916ab03365d8bb",
+      "hr_edl/src/hr_edl/policy.h": "77a10474b7641640e5f6c51e5149dff5a6615aa239b3633b05f1d706f9ef4db0",
+      "hr_edl/src/hr_edl/policy_evaluation.cc": "ca2af247f58cee36a3fa6b90c19a7f22ff2bdb83db143b5d50a0ba894a304cd3",
+      "hr_edl/src/hr_edl/policy_evaluation.h": "320c378bc16ec8faeac69c832498e0b3cf4c8cace709c7599ff53468ebac2cc1",
+      "hr_edl/src/hr_edl/policy_evaluation_test.cc": "da9b4874dce601b91fe76b16414a2afd0452de442c703961869f652ddf80f55d",
+      "hr_edl/src/hr_edl/samplers.cc": "60a97f6d561a6ce891d8330ab7e11facab8e1dbea8423ea353d4e262ad2a53fd",
+      "hr_edl/src/hr_edl/samplers.h": "8345320f00456b7b86935ca1fd4471a3f5445559f428bda0925c9d2646ed7971",
+      "hr_edl/src/hr_edl/scd_local_coverage_test.cc": "e86c4f3d811e44fe84f2208f0c8dff2f0886046cc5aad01b2054f2cb6b8638d0",
+      "hr_edl/src/hr_edl/spiel_extra.cc": "6313de3d0a8cb7418048b6abed9c125a58342db112f3bb2f48475f6fe63b26fc",
+      "hr_edl/src/hr_edl/spiel_extra.h": "b5a8935fdaaeebcf4de8692dbb7b067967a26bb84f2e793bd481a07bf0b0b205",
+      "hr_edl/src/hr_edl/stopwatch.h": "339d00484e531aafeebd9ee1d92036cf12d854b0f0f3c3e363eb507ab44390de",
+      "hr_edl/src/hr_edl/tabular_learner.h": "99c2efc06576ac599636572c7364293280e30ea4869ac7926edaaaf42e0fffcd",
+      "hr_edl/src/hr_edl/tabular_learner_test.cc": "6f0ab53642428ad3780c9673a96a3fec42cbb787f4f3b2083b577dbfa331871f",
+      "hr_edl/src/hr_edl/test_extra.h": "bb91fccd613c0034c536d76c4f4316f3a21ea3a8637b202624b090bf9b21dbf7",
+      "hr_edl/src/hr_edl/types.h": "28187e8f8af7c2f53254e2321c3e403b18c398a0d6f5c46a4413e401d126d9a3"
+    },
+    "executable": {
+      "sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "size": 9083728,
+      "path": "hr_edl/build.optimized/bin/run_fixed_ltbr"
+    },
+    "command": [
+      "hr_edl/build.optimized/bin/run_fixed_ltbr",
+      "--game=goofspiel(imp_info=True,num_cards=4,points_order=random)",
+      "--sampler=null",
+      "--t=1000",
+      "--alg_group=11",
+      "--rt_cfr_weight=0.0",
+      "--rt_cfr_T=1",
+      "--epsilon=0.0",
+      "--file_dir=data/raw/main/scd_main.random_goofspiel.null.fixed.gen.4.ssv",
+      "--scd_budget=4",
+      "--cfr_plus=false",
+      "--threads=4"
+    ]
+  },
+  "output_sha256": "760eb3905c14518cb2ee02263238a95cba98292dff1ccbc2f58161f00335a843",
+  "anonymization": "Machine paths, private Git metadata and original run identifiers removed. Numerical tuple text is unchanged; SCD identifiers are normalized for publication.",
+  "original_output_sha256": "087726cb4a5d2586340c3bddf93fd5d1c5ab7952d24aecbe3f1dd89ccdb40ac5",
+  "identifier_migration": "Algorithm labels, file paths, budget parameter names and predecessor class names use the current SCD namespace. Numerical tuple text and algorithm settings are unchanged; archived source and executable fingerprints are retained.",
+  "command_semantics": "config.command is an equivalent replay invocation in the current SCD namespace. The source_hashes and executable fingerprints describe the original archived run."
+}

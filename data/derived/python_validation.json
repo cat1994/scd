@@ -31,5 +31,6 @@
     "python3 bin/save_data.py --family ablation",
     "python3 bin/plot_SCD.py --main-data data/raw/main --ablation-data data/raw/ablation",
     "python3 -m unittest discover -s tests -v"
-  ]
+  ],
+  "evidence_context": "Historical validation performed during original packaging, before the SCD naming migration. Identifier fields are normalized to the current namespace; recorded source and executable fingerprints describe the original engine. Current migration checks are in scd_naming_validation.json."
 }

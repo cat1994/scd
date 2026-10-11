@@ -17,7 +17,7 @@ bool Check(const std::vector<double>& actual, const std::vector<double>& expecte
 int main() {
   // Exact-k, noncausal deviations must skip exhausted memories when selecting
   // the most queried memory that can still query at this information set.
-  const hr_edl::QueryPredecessors k4(4, false, false);
+  const hr_edl::SCDPredecessors k4(4, false, false);
   if (!Check(k4.InternalPredecessorReachProbs({0.2, 0.3, 0.5}, {0, 2, 4}),
              {0.3}, "noncausal mixed budgets")) return 1;
   if (!Check(k4.InternalPredecessorReachProbs({0.2, 0.8}, {0, 4}),
@@ -32,7 +32,7 @@ int main() {
   if (!Check(k4.InternalPredecessorReachProbs({0.1, 0.6, 0.3}, remaining),
              {0.6}, "updated strategy")) return 1;
 
-  const hr_edl::QueryPredecessors causal(2, false, true);
+  const hr_edl::SCDPredecessors causal(2, false, true);
   const double strategy[] = {0.25, 0.75};
   const auto [probabilities, budgets] = causal.SuccessorReachProbs(
       {1.0}, strategy, 2, 0, {2});

@@ -14,9 +14,10 @@ No external experiment directory or server account is needed.
   datasets, and plot the learning curves.
 - `hr_edl_data/`: strict raw-record parser, method definitions and aggregation.
 - `data/raw/main/`: 7 original main runs; `data/raw/ablation/`: 21 original
-  ablation runs. Every numerical `.ssv` file is unchanged.
-- `data/derived/`: archived endpoint tables and game statistics.
-- `data/provenance.json`: raw-file hashes, method pools and original timing setup.
+  ablation runs. Numerical tuple text is preserved; labels and file names use SCD.
+- `data/derived/`: archived endpoint tables, game statistics and validation evidence.
+- `data/provenance.json`: current and original raw-file hashes, method pools,
+  naming migration and original timing setup.
 - `figures/reference/`: the three PDFs used by the manuscript.
 - `scripts/`: regenerate tables and game statistics, verify the release, and
   export a clean archive.
@@ -91,6 +92,7 @@ thread and one job. Full runs, especially larger games, can be expensive.
 python bin/run_SCD_main.py --dry-run
 python bin/run_SCD_ablation.py --dry-run
 python bin/run_SCD_main.py --games kuhn_3p --iterations 10 --data-dir outputs/example
+python bin/run_SCD_ablation.py --games kuhn_3p --scd-budgets 1 2 4 --iterations 10 --data-dir outputs/example-ablation
 ```
 
 The seven benchmark definitions are in `hr_edl_data/experiment_parameters.py` and recorded in every
@@ -103,14 +105,19 @@ not mean repeatedly using one final frozen opponent policy.
 | Raw method identifier | Manuscript method |
 | --- | --- |
 | `CFR` | SCD_0 |
-| `k-QB-EFR` | compressed SCD_k |
-| `k-QBC-EFR` | uncompressed SCD_<=k |
+| `k-SCD` | compressed SCD_k |
+| `k-SCD_UNCOMPRESSED` | uncompressed SCD_<=k |
 | `A-EFR_IN` | ACT_IN |
 | `CSPS-EFR` | CSPS |
 | `BEHAV-EFR` | BHV |
 
-Historical raw identifiers are retained so that original files remain
-verifiable. The main experiment has exactly a 7-by-7 pool including diagonal
+Source code, raw labels, metadata and derived tables use the same SCD
+identifiers. The `scd_main` and `scd_ablation` file prefixes identify the two
+experiment families. The parameter k is named `scd_budget` in code and metadata,
+`--scd-budgets` (or `--k`) in the Python launchers, and `--scd_budget` in the
+C++ engine. The shared launcher is `bin/run_all_scd.py`.
+
+The main experiment has exactly a 7-by-7 pool including diagonal
 matchups. Each of k=1,2,4 has its own 2-by-2 ablation pool, also including the
 diagonal. Tiny Bridge and experiments from other projects are outside this
 package's scope. All archived runs use uniform initialization, full-tree
@@ -172,8 +179,13 @@ This writes `outputs/scd-anonymous.zip` from the manifest only, excluding Git
 history, local configuration, environments, build products and new outputs.
 The archive is created exclusively and never silently overwritten.
 
-Raw numerical data is byte-identical to the original records. Sidecars retain
-scientific settings and source fingerprints while removing machine paths,
+The naming migration changes algorithm labels and file paths only: numerical
+tuple text, round indices and auxiliary BR rows are preserved. The provenance
+manifest records each current raw-file hash and its pre-migration
+`original_sha256`; sidecars also retain `original_output_sha256`. Sidecar
+source and executable fingerprints describe the original archived engine;
+`SHA256SUMS` covers the current release source. Sidecars retain scientific
+settings while removing machine paths,
 private repository history and original run identifiers. Public third-party
 copyright and license notices are intentionally preserved; they are not
 attributions of authorship for this paper. See `LICENSE.txt` and

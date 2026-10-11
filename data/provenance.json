@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "scope": "Seven games, seven main runs and twenty-one ablation runs used in the manuscript. Tiny Bridge historical runs are excluded.",
-  "raw_data_policy": "All SSV files are copied byte for byte; no numerical records, including auxiliary BR rows, are changed. Metadata is anonymized.",
+  "raw_data_policy": "Original numerical tuple text, round indices and auxiliary BR rows are preserved. Algorithm labels and file names use SCD naming; metadata is anonymized.",
   "hardware": {
     "cpu": "AMD EPYC 7742",
     "main_threads_per_run": 4,
@@ -14,428 +14,456 @@
       "family": "main",
       "game": "kuhn_3p",
       "budget": 4,
-      "path": "data/raw/main/qbce_scd_main.kuhn_3p.null.fixed.gen.4.ssv",
-      "sha256": "5afeb83539444fe098e5c3766cea727d80d37b34224ec33874359d5b837a823c",
-      "bytes": 5499765,
+      "path": "data/raw/main/scd_main.kuhn_3p.null.fixed.gen.4.ssv",
+      "sha256": "42fa0db23a2e3feb180998af272316f454ff452fef7721915da414c4c1213624",
+      "bytes": 5490756,
       "iterations": 1000,
       "algorithm_pool": [
         "CFR",
-        "1-QB-EFR",
-        "2-QB-EFR",
-        "4-QB-EFR",
+        "1-SCD",
+        "2-SCD",
+        "4-SCD",
         "A-EFR_IN",
         "CSPS-EFR",
         "BEHAV-EFR"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "5afeb83539444fe098e5c3766cea727d80d37b34224ec33874359d5b837a823c"
     },
     {
       "family": "main",
       "game": "leduc",
       "budget": 4,
-      "path": "data/raw/main/qbce_scd_main.leduc.null.fixed.gen.4.ssv",
-      "sha256": "d85089afc9ce2f78a918460ea56bdb94497176253689682e15367b0b25c80100",
-      "bytes": 5134587,
+      "path": "data/raw/main/scd_main.leduc.null.fixed.gen.4.ssv",
+      "sha256": "c741f570e3607a0ea44bb2634ee09d6876a19937cac739315716958c4ce742fe",
+      "bytes": 5125578,
       "iterations": 1000,
       "algorithm_pool": [
         "CFR",
-        "1-QB-EFR",
-        "2-QB-EFR",
-        "4-QB-EFR",
+        "1-SCD",
+        "2-SCD",
+        "4-SCD",
         "A-EFR_IN",
         "CSPS-EFR",
         "BEHAV-EFR"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "d85089afc9ce2f78a918460ea56bdb94497176253689682e15367b0b25c80100"
     },
     {
       "family": "main",
       "game": "random_goofspiel",
       "budget": 4,
-      "path": "data/raw/main/qbce_scd_main.random_goofspiel.null.fixed.gen.4.ssv",
-      "sha256": "087726cb4a5d2586340c3bddf93fd5d1c5ab7952d24aecbe3f1dd89ccdb40ac5",
-      "bytes": 5412604,
+      "path": "data/raw/main/scd_main.random_goofspiel.null.fixed.gen.4.ssv",
+      "sha256": "760eb3905c14518cb2ee02263238a95cba98292dff1ccbc2f58161f00335a843",
+      "bytes": 5403595,
       "iterations": 1000,
       "algorithm_pool": [
         "CFR",
-        "1-QB-EFR",
-        "2-QB-EFR",
-        "4-QB-EFR",
+        "1-SCD",
+        "2-SCD",
+        "4-SCD",
         "A-EFR_IN",
         "CSPS-EFR",
         "BEHAV-EFR"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "087726cb4a5d2586340c3bddf93fd5d1c5ab7952d24aecbe3f1dd89ccdb40ac5"
     },
     {
       "family": "main",
       "game": "goofspiel_3p",
       "budget": 4,
-      "path": "data/raw/main/qbce_scd_main.goofspiel_3p.null.fixed.gen.4.ssv",
-      "sha256": "4697957bec20b23055a2de2c9f93cc472cca54f3519dba98f4284fcc0e7137c4",
-      "bytes": 5457155,
+      "path": "data/raw/main/scd_main.goofspiel_3p.null.fixed.gen.4.ssv",
+      "sha256": "dac204cffbf9fd5fdc687cf91238b812ec7542f769210f5e1a8588ac4b4e6648",
+      "bytes": 5448146,
       "iterations": 1000,
       "algorithm_pool": [
         "CFR",
-        "1-QB-EFR",
-        "2-QB-EFR",
-        "4-QB-EFR",
+        "1-SCD",
+        "2-SCD",
+        "4-SCD",
         "A-EFR_IN",
         "CSPS-EFR",
         "BEHAV-EFR"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "4697957bec20b23055a2de2c9f93cc472cca54f3519dba98f4284fcc0e7137c4"
     },
     {
       "family": "main",
       "game": "goofspiel_ascending_3p",
       "budget": 4,
-      "path": "data/raw/main/qbce_scd_main.goofspiel_ascending_3p.null.fixed.gen.4.ssv",
-      "sha256": "bf40ad6849998ec515f112147f06ff7045ccce244d7d44e504ea527a17a449b4",
-      "bytes": 5379497,
+      "path": "data/raw/main/scd_main.goofspiel_ascending_3p.null.fixed.gen.4.ssv",
+      "sha256": "c29efaf10f83c5984e8d5aaec2aa5ca7b9e7d0f44482bfd9b21e2bead3277630",
+      "bytes": 5370488,
       "iterations": 1000,
       "algorithm_pool": [
         "CFR",
-        "1-QB-EFR",
-        "2-QB-EFR",
-        "4-QB-EFR",
+        "1-SCD",
+        "2-SCD",
+        "4-SCD",
         "A-EFR_IN",
         "CSPS-EFR",
         "BEHAV-EFR"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "bf40ad6849998ec515f112147f06ff7045ccce244d7d44e504ea527a17a449b4"
     },
     {
       "family": "main",
       "game": "sheriff",
       "budget": 4,
-      "path": "data/raw/main/qbce_scd_main.sheriff.null.fixed.gen.4.ssv",
-      "sha256": "091534b91d4bbaba258d231ca24dabb4d7b344271b5181be2c17b29bb5dfbe4d",
-      "bytes": 5219629,
+      "path": "data/raw/main/scd_main.sheriff.null.fixed.gen.4.ssv",
+      "sha256": "04b1915cc41000107691db32bf7da683f7e9d5ccd38b91627c7c69449b6d71d5",
+      "bytes": 5210620,
       "iterations": 1000,
       "algorithm_pool": [
         "CFR",
-        "1-QB-EFR",
-        "2-QB-EFR",
-        "4-QB-EFR",
+        "1-SCD",
+        "2-SCD",
+        "4-SCD",
         "A-EFR_IN",
         "CSPS-EFR",
         "BEHAV-EFR"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "091534b91d4bbaba258d231ca24dabb4d7b344271b5181be2c17b29bb5dfbe4d"
     },
     {
       "family": "main",
       "game": "battleship",
       "budget": 4,
-      "path": "data/raw/main/qbce_scd_main.battleship.null.fixed.gen.4.ssv",
-      "sha256": "8afea8f5dee3561a841c24bac1652e7d4d39365cda57accd09f0d2333e60701e",
-      "bytes": 5284213,
+      "path": "data/raw/main/scd_main.battleship.null.fixed.gen.4.ssv",
+      "sha256": "2aab3200a38ccc8a5a849e5a642c7b463c6e1f31eb34277c5a3435ea39bedb7e",
+      "bytes": 5275204,
       "iterations": 1000,
       "algorithm_pool": [
         "CFR",
-        "1-QB-EFR",
-        "2-QB-EFR",
-        "4-QB-EFR",
+        "1-SCD",
+        "2-SCD",
+        "4-SCD",
         "A-EFR_IN",
         "CSPS-EFR",
         "BEHAV-EFR"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "8afea8f5dee3561a841c24bac1652e7d4d39365cda57accd09f0d2333e60701e"
     },
     {
       "family": "ablation",
       "game": "kuhn_3p",
       "budget": 1,
-      "path": "data/raw/ablation/qbce_test.kuhn_3p.null.fixed.gen.1.ssv",
-      "sha256": "66a402f2826320bc3e6e5a32e26ecd8ac016eaa8c4e4c0e185a19a6c79b71c7e",
-      "bytes": 564674,
+      "path": "data/raw/ablation/scd_ablation.kuhn_3p.null.fixed.gen.1.ssv",
+      "sha256": "59cb1fd2a4654bae687e7d381314b32b2c127ef9fe25c86b5a32a7aa01d02f52",
+      "bytes": 570680,
       "iterations": 1000,
       "algorithm_pool": [
-        "1-QB-EFR",
-        "1-QBC-EFR"
+        "1-SCD",
+        "1-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "66a402f2826320bc3e6e5a32e26ecd8ac016eaa8c4e4c0e185a19a6c79b71c7e"
     },
     {
       "family": "ablation",
       "game": "kuhn_3p",
       "budget": 2,
-      "path": "data/raw/ablation/qbce_test.kuhn_3p.null.fixed.gen.2.ssv",
-      "sha256": "7536a222b4a301b268b372a532567be9a771ffecd12bd400462ab011aaf48cc4",
-      "bytes": 568416,
+      "path": "data/raw/ablation/scd_ablation.kuhn_3p.null.fixed.gen.2.ssv",
+      "sha256": "0ae1d150f9e5ebfe9dc47d48776a63eea49998a5dd25d127218341c02e90d1c0",
+      "bytes": 574422,
       "iterations": 1000,
       "algorithm_pool": [
-        "2-QB-EFR",
-        "2-QBC-EFR"
+        "2-SCD",
+        "2-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "7536a222b4a301b268b372a532567be9a771ffecd12bd400462ab011aaf48cc4"
     },
     {
       "family": "ablation",
       "game": "kuhn_3p",
       "budget": 4,
-      "path": "data/raw/ablation/qbce_test.kuhn_3p.null.fixed.gen.4.ssv",
-      "sha256": "fad843d54b3ba03c2ec1fc499bcb9fbe45320ae09a4b4b12339d3c99f25e892b",
-      "bytes": 568618,
+      "path": "data/raw/ablation/scd_ablation.kuhn_3p.null.fixed.gen.4.ssv",
+      "sha256": "684755db29d8a077e097640071d59b5384b6dea98fca8f6d1140238600f2cac3",
+      "bytes": 574624,
       "iterations": 1000,
       "algorithm_pool": [
-        "4-QB-EFR",
-        "4-QBC-EFR"
+        "4-SCD",
+        "4-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "fad843d54b3ba03c2ec1fc499bcb9fbe45320ae09a4b4b12339d3c99f25e892b"
     },
     {
       "family": "ablation",
       "game": "leduc",
       "budget": 1,
-      "path": "data/raw/ablation/qbce_test.leduc.null.fixed.gen.1.ssv",
-      "sha256": "4746f4bcc5916c7bdacc066b08976a6fff19b6ff7de34e65a82219924d90b1f1",
-      "bytes": 519493,
+      "path": "data/raw/ablation/scd_ablation.leduc.null.fixed.gen.1.ssv",
+      "sha256": "c512d67e22bd220f61bf20e1a09504061dd04a58215c53d13fee1aaa0de8cca0",
+      "bytes": 525499,
       "iterations": 1000,
       "algorithm_pool": [
-        "1-QB-EFR",
-        "1-QBC-EFR"
+        "1-SCD",
+        "1-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "4746f4bcc5916c7bdacc066b08976a6fff19b6ff7de34e65a82219924d90b1f1"
     },
     {
       "family": "ablation",
       "game": "leduc",
       "budget": 2,
-      "path": "data/raw/ablation/qbce_test.leduc.null.fixed.gen.2.ssv",
-      "sha256": "274b673a39fcb261c53c4fc1d0fb01e1290aae27a9337961dd65c70e13f4dbaf",
-      "bytes": 526592,
+      "path": "data/raw/ablation/scd_ablation.leduc.null.fixed.gen.2.ssv",
+      "sha256": "2ee1938108cbae90e4fca38db05091c9c01559423ae2d76fa83603aaf47b433e",
+      "bytes": 532598,
       "iterations": 1000,
       "algorithm_pool": [
-        "2-QB-EFR",
-        "2-QBC-EFR"
+        "2-SCD",
+        "2-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "274b673a39fcb261c53c4fc1d0fb01e1290aae27a9337961dd65c70e13f4dbaf"
     },
     {
       "family": "ablation",
       "game": "leduc",
       "budget": 4,
-      "path": "data/raw/ablation/qbce_test.leduc.null.fixed.gen.4.ssv",
-      "sha256": "3fc8e9f5042cdcace268118b163afcd170cef08422f77cc7b3de873028da20b2",
-      "bytes": 516847,
+      "path": "data/raw/ablation/scd_ablation.leduc.null.fixed.gen.4.ssv",
+      "sha256": "5807e4e3095f883197ff793a99d3e67e94e1c9f64e01fdd345a2a7934786f9f9",
+      "bytes": 522853,
       "iterations": 1000,
       "algorithm_pool": [
-        "4-QB-EFR",
-        "4-QBC-EFR"
+        "4-SCD",
+        "4-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "3fc8e9f5042cdcace268118b163afcd170cef08422f77cc7b3de873028da20b2"
     },
     {
       "family": "ablation",
       "game": "random_goofspiel",
       "budget": 1,
-      "path": "data/raw/ablation/qbce_test.random_goofspiel.null.fixed.gen.1.ssv",
-      "sha256": "2c1d364db7bf46d4c1febabbdfb9b9504944adeb62e256e1f6c2e67c93fa3bf0",
-      "bytes": 541165,
+      "path": "data/raw/ablation/scd_ablation.random_goofspiel.null.fixed.gen.1.ssv",
+      "sha256": "f9964f5bc29c5cefd2e0fd9f90e8ed12d597a8c51cb9cf8f2b0d6462690c5614",
+      "bytes": 547171,
       "iterations": 1000,
       "algorithm_pool": [
-        "1-QB-EFR",
-        "1-QBC-EFR"
+        "1-SCD",
+        "1-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "2c1d364db7bf46d4c1febabbdfb9b9504944adeb62e256e1f6c2e67c93fa3bf0"
     },
     {
       "family": "ablation",
       "game": "random_goofspiel",
       "budget": 2,
-      "path": "data/raw/ablation/qbce_test.random_goofspiel.null.fixed.gen.2.ssv",
-      "sha256": "cc0f9022864c95ad969c01138e0d04ee507d23b0cb09f6699e0bcd984a00fe1d",
-      "bytes": 525859,
+      "path": "data/raw/ablation/scd_ablation.random_goofspiel.null.fixed.gen.2.ssv",
+      "sha256": "0a6c69aa0adb150e89161cd5e9ae78a9e0cfee1e3b38eb4adad0f1b11a520f95",
+      "bytes": 531865,
       "iterations": 1000,
       "algorithm_pool": [
-        "2-QB-EFR",
-        "2-QBC-EFR"
+        "2-SCD",
+        "2-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "cc0f9022864c95ad969c01138e0d04ee507d23b0cb09f6699e0bcd984a00fe1d"
     },
     {
       "family": "ablation",
       "game": "random_goofspiel",
       "budget": 4,
-      "path": "data/raw/ablation/qbce_test.random_goofspiel.null.fixed.gen.4.ssv",
-      "sha256": "8b44091f0eccd26f2750cee918dc05b0e4fe5ec30674cc134bdec0b91c7126b1",
-      "bytes": 536745,
+      "path": "data/raw/ablation/scd_ablation.random_goofspiel.null.fixed.gen.4.ssv",
+      "sha256": "e110aeeda5bff29bb7180344bb81c40923434a81a7bce69ad2c5d15c154421c0",
+      "bytes": 542751,
       "iterations": 1000,
       "algorithm_pool": [
-        "4-QB-EFR",
-        "4-QBC-EFR"
+        "4-SCD",
+        "4-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "8b44091f0eccd26f2750cee918dc05b0e4fe5ec30674cc134bdec0b91c7126b1"
     },
     {
       "family": "ablation",
       "game": "goofspiel_3p",
       "budget": 1,
-      "path": "data/raw/ablation/qbce_test.goofspiel_3p.null.fixed.gen.1.ssv",
-      "sha256": "21b22f2ef70154d95ecd218491d3e3f10e1421b1e80545defa2b9736703149ec",
-      "bytes": 563771,
+      "path": "data/raw/ablation/scd_ablation.goofspiel_3p.null.fixed.gen.1.ssv",
+      "sha256": "03316453fe8bb9d48e9e0d094c2ccfc413042f5c4e8878698cb79a7e69fa5262",
+      "bytes": 569777,
       "iterations": 1000,
       "algorithm_pool": [
-        "1-QB-EFR",
-        "1-QBC-EFR"
+        "1-SCD",
+        "1-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "21b22f2ef70154d95ecd218491d3e3f10e1421b1e80545defa2b9736703149ec"
     },
     {
       "family": "ablation",
       "game": "goofspiel_3p",
       "budget": 2,
-      "path": "data/raw/ablation/qbce_test.goofspiel_3p.null.fixed.gen.2.ssv",
-      "sha256": "e3695a1a6b0d8ab28bd887b18d68606949d59d2899129dc2f587042dda144ec9",
-      "bytes": 543468,
+      "path": "data/raw/ablation/scd_ablation.goofspiel_3p.null.fixed.gen.2.ssv",
+      "sha256": "f86103c7f08dc5ecccf1dd225fde923c5dd96a7a33da3c3821f281783315a175",
+      "bytes": 549474,
       "iterations": 1000,
       "algorithm_pool": [
-        "2-QB-EFR",
-        "2-QBC-EFR"
+        "2-SCD",
+        "2-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "e3695a1a6b0d8ab28bd887b18d68606949d59d2899129dc2f587042dda144ec9"
     },
     {
       "family": "ablation",
       "game": "goofspiel_3p",
       "budget": 4,
-      "path": "data/raw/ablation/qbce_test.goofspiel_3p.null.fixed.gen.4.ssv",
-      "sha256": "f8faa12abf0991dd749beebd12a21de7f2f1813345bde1b18fdedf3b9978b47b",
-      "bytes": 537758,
+      "path": "data/raw/ablation/scd_ablation.goofspiel_3p.null.fixed.gen.4.ssv",
+      "sha256": "81fbe48ec0e2d10bd0bfc88b3b666e9c3768ec6940821db791aede7c4918d2c6",
+      "bytes": 543764,
       "iterations": 1000,
       "algorithm_pool": [
-        "4-QB-EFR",
-        "4-QBC-EFR"
+        "4-SCD",
+        "4-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "f8faa12abf0991dd749beebd12a21de7f2f1813345bde1b18fdedf3b9978b47b"
     },
     {
       "family": "ablation",
       "game": "goofspiel_ascending_3p",
       "budget": 1,
-      "path": "data/raw/ablation/qbce_test.goofspiel_ascending_3p.null.fixed.gen.1.ssv",
-      "sha256": "3c540bd08fa20239355520b942f9f7f2afa094d0a70a59f19f43f3dfe0a20585",
-      "bytes": 559168,
+      "path": "data/raw/ablation/scd_ablation.goofspiel_ascending_3p.null.fixed.gen.1.ssv",
+      "sha256": "b843392f58360318cc69f67023425b19290b086ca441648b26007e5d0e1243b0",
+      "bytes": 565174,
       "iterations": 1000,
       "algorithm_pool": [
-        "1-QB-EFR",
-        "1-QBC-EFR"
+        "1-SCD",
+        "1-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "3c540bd08fa20239355520b942f9f7f2afa094d0a70a59f19f43f3dfe0a20585"
     },
     {
       "family": "ablation",
       "game": "goofspiel_ascending_3p",
       "budget": 2,
-      "path": "data/raw/ablation/qbce_test.goofspiel_ascending_3p.null.fixed.gen.2.ssv",
-      "sha256": "82a24c7da37e3e82460dc85f95b6e32b46988ea5f51b16f60a5cddb97ec864ca",
-      "bytes": 534504,
+      "path": "data/raw/ablation/scd_ablation.goofspiel_ascending_3p.null.fixed.gen.2.ssv",
+      "sha256": "89f2532c22ebfbf40fa607925fcc808b904d8db4a04f97efde086ca901d152da",
+      "bytes": 540510,
       "iterations": 1000,
       "algorithm_pool": [
-        "2-QB-EFR",
-        "2-QBC-EFR"
+        "2-SCD",
+        "2-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "82a24c7da37e3e82460dc85f95b6e32b46988ea5f51b16f60a5cddb97ec864ca"
     },
     {
       "family": "ablation",
       "game": "goofspiel_ascending_3p",
       "budget": 4,
-      "path": "data/raw/ablation/qbce_test.goofspiel_ascending_3p.null.fixed.gen.4.ssv",
-      "sha256": "26af9027011aab1963096e0e7dd36203bbda487126d67cd596a27f5525b1026e",
-      "bytes": 538975,
+      "path": "data/raw/ablation/scd_ablation.goofspiel_ascending_3p.null.fixed.gen.4.ssv",
+      "sha256": "8a248d09db764e054ade8ecdc7d265511ffac9fe2570145cd32ae108b4a3871f",
+      "bytes": 544981,
       "iterations": 1000,
       "algorithm_pool": [
-        "4-QB-EFR",
-        "4-QBC-EFR"
+        "4-SCD",
+        "4-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "26af9027011aab1963096e0e7dd36203bbda487126d67cd596a27f5525b1026e"
     },
     {
       "family": "ablation",
       "game": "sheriff",
       "budget": 1,
-      "path": "data/raw/ablation/qbce_test.sheriff.null.fixed.gen.1.ssv",
-      "sha256": "2f7adb2548882dccc0954d0e50e9c0bda2dee9ddefe25ef3bc692e50be46b6e9",
-      "bytes": 536804,
+      "path": "data/raw/ablation/scd_ablation.sheriff.null.fixed.gen.1.ssv",
+      "sha256": "a219833e62f840e84b0d87325733adc06ed6932e8448f03229e4b8b7caac24d5",
+      "bytes": 542810,
       "iterations": 1000,
       "algorithm_pool": [
-        "1-QB-EFR",
-        "1-QBC-EFR"
+        "1-SCD",
+        "1-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "2f7adb2548882dccc0954d0e50e9c0bda2dee9ddefe25ef3bc692e50be46b6e9"
     },
     {
       "family": "ablation",
       "game": "sheriff",
       "budget": 2,
-      "path": "data/raw/ablation/qbce_test.sheriff.null.fixed.gen.2.ssv",
-      "sha256": "2849ffbc9323ea426a0f825d1fd7a8e664b3a1e94852a1ff97cf9409e78b19e4",
-      "bytes": 540044,
+      "path": "data/raw/ablation/scd_ablation.sheriff.null.fixed.gen.2.ssv",
+      "sha256": "7106fcc3ecd74d34f4d1bfdfedf1ba91d6dbbd594fd1d3dcad5aca0142ae4320",
+      "bytes": 546050,
       "iterations": 1000,
       "algorithm_pool": [
-        "2-QB-EFR",
-        "2-QBC-EFR"
+        "2-SCD",
+        "2-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "2849ffbc9323ea426a0f825d1fd7a8e664b3a1e94852a1ff97cf9409e78b19e4"
     },
     {
       "family": "ablation",
       "game": "sheriff",
       "budget": 4,
-      "path": "data/raw/ablation/qbce_test.sheriff.null.fixed.gen.4.ssv",
-      "sha256": "b4d2f265e3fd45cfcd493c87a9952fb0398b6ae114b6cfcf53b318af83127d62",
-      "bytes": 541336,
+      "path": "data/raw/ablation/scd_ablation.sheriff.null.fixed.gen.4.ssv",
+      "sha256": "a28a5da0dd8e962dc24851ec68a0d7aa4513d6acc6305790389e8ac10e68167d",
+      "bytes": 547342,
       "iterations": 1000,
       "algorithm_pool": [
-        "4-QB-EFR",
-        "4-QBC-EFR"
+        "4-SCD",
+        "4-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "b4d2f265e3fd45cfcd493c87a9952fb0398b6ae114b6cfcf53b318af83127d62"
     },
     {
       "family": "ablation",
       "game": "battleship",
       "budget": 1,
-      "path": "data/raw/ablation/qbce_test.battleship.null.fixed.gen.1.ssv",
-      "sha256": "5ef7f48dfcb3d2cb398a55f6f34020e7c4aeacc3eceda588b102bbe8cf8cbbf8",
-      "bytes": 530167,
+      "path": "data/raw/ablation/scd_ablation.battleship.null.fixed.gen.1.ssv",
+      "sha256": "3aad90722ab18fe64f83692efc3e32c3f8d13a98495353a2e9e59978dcde8256",
+      "bytes": 536173,
       "iterations": 1000,
       "algorithm_pool": [
-        "1-QB-EFR",
-        "1-QBC-EFR"
+        "1-SCD",
+        "1-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "5ef7f48dfcb3d2cb398a55f6f34020e7c4aeacc3eceda588b102bbe8cf8cbbf8"
     },
     {
       "family": "ablation",
       "game": "battleship",
       "budget": 2,
-      "path": "data/raw/ablation/qbce_test.battleship.null.fixed.gen.2.ssv",
-      "sha256": "3930e058c2373b0a15c5bc8d4cd05ca9c2a7e12b8dae590384b2f902fb1bbef0",
-      "bytes": 522532,
+      "path": "data/raw/ablation/scd_ablation.battleship.null.fixed.gen.2.ssv",
+      "sha256": "0ed8e1c318b3a1ee2c81f6dca98e56380b7063b96a66076c21bd3b8503b26e7d",
+      "bytes": 528538,
       "iterations": 1000,
       "algorithm_pool": [
-        "2-QB-EFR",
-        "2-QBC-EFR"
+        "2-SCD",
+        "2-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "3930e058c2373b0a15c5bc8d4cd05ca9c2a7e12b8dae590384b2f902fb1bbef0"
     },
     {
       "family": "ablation",
       "game": "battleship",
       "budget": 4,
-      "path": "data/raw/ablation/qbce_test.battleship.null.fixed.gen.4.ssv",
-      "sha256": "ee86e5a695c598e952d72d427e2b179d32c518e8faa083eb5dbf22f909b33893",
-      "bytes": 531685,
+      "path": "data/raw/ablation/scd_ablation.battleship.null.fixed.gen.4.ssv",
+      "sha256": "b96ae0254bca15ae38a5ab348de4bf6d48c917804d52ac0b8a2aa2dcc146bb39",
+      "bytes": 537691,
       "iterations": 1000,
       "algorithm_pool": [
-        "4-QB-EFR",
-        "4-QBC-EFR"
+        "4-SCD",
+        "4-SCD_UNCOMPRESSED"
       ],
-      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e"
+      "original_executable_sha256": "1d433f8bdc024437de92339eb7729eb78578f2bf67fa38df951957e6d89f919e",
+      "original_sha256": "ee86e5a695c598e952d72d427e2b179d32c518e8faa083eb5dbf22f909b33893"
     }
   ],
   "paper_reference_figures": [
@@ -451,5 +479,11 @@
       "path": "figures/reference/SCD_ablation_runtime.pdf",
       "sha256": "813bb484150ae329afcdf3035f5948fa68dfaf9af2a7ce898eeb7e6e050e7e15"
     }
-  ]
+  ],
+  "identifier_migration": {
+    "compressed": "k-SCD",
+    "uncompressed": "k-SCD_UNCOMPRESSED",
+    "verification": "Each release SSV equals the original archive after replacing algorithm labels only. original_sha256 records the pre-migration archive hash.",
+    "historical_fingerprints": "Per-run source_hashes and executable fingerprints refer to the original archived engine. SHA256SUMS identifies current release files."
+  }
 }

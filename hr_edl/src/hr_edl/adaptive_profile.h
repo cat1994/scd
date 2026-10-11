@@ -535,13 +535,13 @@ class PerturbedCfTreeLearnerProfile : public AdaptiveProfile {
   size_t iteration_;
 };
 
-// QBCE算法配置，继承至AdaptiveProfile
-class QBCECfTreeLearnerProfile : public AdaptiveProfile {
+// SCD算法配置，继承至AdaptiveProfile
+class SCDCfTreeLearnerProfile : public AdaptiveProfile {
  public:
   // learners_: 使用智能指针创建一个包含学习者的向量，包含每个玩家 CfValueTreeLearnerPtr
   // evaluators_：每个玩家对应一个PolicyCfValueTreeEvaluator，用于计算该玩家的cfv树,
   // 给定根节点、玩家策略和采样器
-  QBCECfTreeLearnerProfile(std::vector<CfValueTreeLearnerPtr>&& learners)
+  SCDCfTreeLearnerProfile(std::vector<CfValueTreeLearnerPtr>&& learners)
       : learners_(std::move(learners)), evaluators_(NewEvaluators()) {}
 
   Policy* Strategy(size_t player) const override final { return learners_[player].get(); }

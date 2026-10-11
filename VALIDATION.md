@@ -2,9 +2,14 @@
 
 The extraction preserves the original numerical records and separates them
 from freshly generated validation output. The full 1000-round tournaments were
-not rerun during packaging.
+not rerun during packaging. The subsequent SCD naming migration changes labels,
+file names and source identifiers; all numerical tuple text is preserved.
 
-## Checks performed
+## Original packaging checks
+
+The checks below describe the original packaging validation, before the naming
+migration. The corresponding C++ and Python evidence retains the original
+engine fingerprints and environment details.
 
 - All 28 raw SSV files match their archived SHA-256 hashes exactly.
 - All 518,000 parsed records are retained, including auxiliary BR rows.
@@ -38,6 +43,23 @@ not rerun during packaging.
 Detailed evidence is in `data/derived/cpp_validation.json`,
 `python_validation.json`, `table_validation.json` and
 `game_statistics_validation.json`.
+
+## SCD naming migration
+
+The compressed and uncompressed methods now use `k-SCD` and
+`k-SCD_UNCOMPRESSED` throughout source code, raw records, sidecars and derived
+tables. Experiment prefixes are `scd_main` and `scd_ablation`; the k parameter
+is `scd_budget`. No update rule or numeric experiment setting is changed.
+
+All 28 migrated SSV files were checked against the expected bytes obtained by
+replacing algorithm labels in the original files only. The original hashes
+are retained as `original_sha256` in `data/provenance.json` and
+`original_output_sha256` in the sidecars. Current raw hashes, byte counts and
+derived-data references are updated together. Historical source and executable
+fingerprints still identify the archived runs; the current release manifest
+identifies the renamed source files.
+
+Current migration checks are recorded in `data/derived/scd_naming_validation.json`.
 
 ## Reproduction boundaries
 

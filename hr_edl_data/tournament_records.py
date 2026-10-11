@@ -32,9 +32,9 @@ def evaluation_set(row):
     }
     if row in sets:
         return sets[row]
-    if re.fullmatch(r"\d+-QB-EFR", row):
+    if re.fullmatch(r"\d+-SCD", row):
         return "local_EX_length_k_if_present_and_IN_length_min(k-1,d_I)"
-    if re.fullmatch(r"\d+-QBC-EFR", row):
+    if re.fullmatch(r"\d+-SCD_UNCOMPRESSED", row):
         return "local_EX_all_lengths_le_k_and_IN_all_lengths_lt_k"
     return "maintained_local_EX_IN_experts"
 
@@ -52,14 +52,14 @@ def tournament_data_entries(file_name):
     metadata = read_metadata(source)
     config = metadata.get("config", {})
     for field, expected in (("game", params.game_tag), ("mode", params.mode),
-                            ("query_budget", params.query_budget)):
+                            ("scd_budget", params.scd_budget)):
         if field in config and config[field] != expected:
             raise ValueError(f"{source}: metadata/filename mismatch for {field}")
     cfr_plus = config.get("cfr_plus")
     if cfr_plus is None and "no_cfr_plus" in source.parts:
         cfr_plus = False
-    family = config.get("experiment_family", "SCD_main" if params.alg_group_str in ("qbce_all", "qbce_scd_main") else
-                        "SCD_ablation" if params.alg_group_str == "qbce_test" else params.alg_group_str)
+    family = config.get("experiment_family", "SCD_main" if params.alg_group_str == "scd_main" else
+                        "SCD_ablation" if params.alg_group_str == "scd_ablation" else params.alg_group_str)
     columns = None
     t = None
     seen = set()
@@ -120,7 +120,7 @@ def tournament_data_entries(file_name):
                     "retained_local_regret_numerator": raw,
                     "retained_local_regret": raw / updates if np.isfinite(updates) else np.nan,
                     "full_local_regret_bound": np.nan, "full_local_regret_exact": np.nan,
-                    "query_budget": config.get("query_budget", params.query_budget),
+                    "scd_budget": config.get("scd_budget", params.scd_budget),
                     "experiment_family": family, "opponent_pool": tuple(columns),
                     "analysis_opponent_pool": tuple(config.get("analysis_opponent_pool", columns)),
                     "source_file": source_label,
@@ -172,7 +172,7 @@ def validate_tournament_result(path, algorithms, iterations, *, entries=None):
 
 def validate_ablation_result(path, budget, iterations):
     """Validate all four learner pairs and both BR pairs at every round."""
-    return validate_tournament_result(path, (f"{budget}-QB-EFR", f"{budget}-QBC-EFR"), iterations)
+    return validate_tournament_result(path, (f"{budget}-SCD", f"{budget}-SCD_UNCOMPRESSED"), iterations)
 
 
 def portable_source_path(path):

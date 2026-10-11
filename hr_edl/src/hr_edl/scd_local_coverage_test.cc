@@ -108,8 +108,8 @@ void Coverage(size_t d, size_t k) {
         round == 1 ? std::vector<double>{.5, .4, .1} : std::vector<double>{0, .6, .4});
     }
     // Bind product weights and retained layers to the actual C++ propagation.
-    hr_edl::QueryPredecessors compressed(k, false, false);
-    hr_edl::QueryPredecessors_ complete(k, false, false);
+    hr_edl::SCDPredecessors compressed(k, false, false);
+    hr_edl::UncompressedSCDPredecessors complete(k, false, false);
     std::vector<double> weights{1}; std::vector<size_t> budgets{k};
     for (size_t j = 0; j < d; ++j) {
       auto next = compressed.SuccessorReachProbs(weights, pred[j].data(), actions[j], 0, budgets);
@@ -278,7 +278,7 @@ int main() {
     RawCfrPlus();
     const auto selected = AlgsInGroup(11, 4);
     const std::vector<std::string> main_labels = {
-        "CFR", "1-QB-EFR", "2-QB-EFR", "4-QB-EFR",
+        "CFR", "1-SCD", "2-SCD", "4-SCD",
         "A-EFR_IN", "CSPS-EFR", "BEHAV-EFR"};
     if (AlgsInGroup(10, 4).size() != 14 || LearnerProfileLabels(selected) != main_labels)
       throw std::runtime_error("incorrect SCD main/legacy algorithm selection");

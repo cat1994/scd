@@ -1,0 +1,145 @@
+{
+  "scope": "SCD namespace migration across C++ and Python code, raw record labels, file names, metadata and derived tables. Scientific numeric text and update logic are preserved.",
+  "status": "passed",
+  "names": {
+    "compressed": "k-SCD",
+    "uncompressed": "k-SCD_UNCOMPRESSED",
+    "main_group": "scd_main",
+    "ablation_group": "scd_ablation",
+    "budget_parameter": "scd_budget",
+    "python_budget_option": "--scd-budgets",
+    "cpp_budget_option": "--scd_budget",
+    "shared_launcher": "bin/run_all_scd.py"
+  },
+  "raw_archive_checks": {
+    "files": 28,
+    "numeric_tuples": 518000,
+    "exact_label_only_byte_transformation": true,
+    "original_hashes_retained": true,
+    "source_and_executable_fingerprints_retained": true
+  },
+  "source_review": {
+    "cpp_files": 6,
+    "cpp_tokens_match_identifier_only_replacement": true,
+    "legacy_labels_in_verifier": "Historical label constants are used only to reconstruct original archive hashes; they are not active algorithm or launcher names."
+  },
+  "tests": {
+    "cpp_build": "passed",
+    "ctest_passed": 3,
+    "python_unittest_passed": 8,
+    "main_dry_run_tasks": 7,
+    "ablation_dry_run_tasks": 21
+  },
+  "archived_scientific_comparison": {
+    "fields": [
+      "value",
+      "max_full_phi_regret_fus",
+      "retained_local_regret_numerator"
+    ],
+    "excluded_fields": [
+      "milliseconds",
+      "diagnostic_milliseconds"
+    ],
+    "cases": [
+      {
+        "family": "ablation",
+        "game": "kuhn_3p",
+        "scd_budget": 1,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "family": "ablation",
+        "game": "kuhn_3p",
+        "scd_budget": 2,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "family": "ablation",
+        "game": "kuhn_3p",
+        "scd_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "family": "ablation",
+        "game": "leduc",
+        "scd_budget": 1,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "family": "ablation",
+        "game": "leduc",
+        "scd_budget": 2,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "family": "ablation",
+        "game": "leduc",
+        "scd_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "family": "main",
+        "game": "kuhn_3p",
+        "scd_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 280,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      },
+      {
+        "family": "main",
+        "game": "leduc",
+        "scd_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 280,
+        "exact_equality": true,
+        "max_absolute_error": 0.0
+      }
+    ]
+  },
+  "endpoint_checks": {
+    "records": 91,
+    "numeric_values_checked": 364,
+    "archive_values_exactly_preserved": true,
+    "maximum_absolute_error_recomputed": {
+      "osr1000": 0.0,
+      "payoff_native": 0.0,
+      "value_display_scale": 0.0,
+      "runtime_seconds": 0.0
+    },
+    "formatted_cells_match": 273,
+    "both_latex_tables_byte_identical": true,
+    "csv_matches_json": true
+  },
+  "figure_generation": {
+    "seven_game_figures": 3,
+    "outputs": [
+      "outputs/scd-naming-validation/figures/SCD_ablation_round.pdf",
+      "outputs/scd-naming-validation/figures/SCD_ablation_round.png",
+      "outputs/scd-naming-validation/figures/SCD_ablation_runtime.pdf",
+      "outputs/scd-naming-validation/figures/SCD_ablation_runtime.png",
+      "outputs/scd-naming-validation/figures/SCD_main.pdf",
+      "outputs/scd-naming-validation/figures/SCD_main.png"
+    ],
+    "result": "passed"
+  },
+  "historical_evidence": "cpp_validation.json, python_validation.json and table_validation.json describe original packaging checks; historical engine fingerprints are not replaced by current source hashes."
+}

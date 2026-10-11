@@ -87,7 +87,7 @@
       {
         "game": "kuhn_3p",
         "alg_group": 11,
-        "query_budget": 4,
+        "scd_budget": 4,
         "iterations": 5,
         "numeric_tuples": 280,
         "max_absolute_error": 0,
@@ -97,7 +97,7 @@
       {
         "game": "kuhn_3p",
         "alg_group": 99,
-        "query_budget": 1,
+        "scd_budget": 1,
         "iterations": 5,
         "numeric_tuples": 30,
         "max_absolute_error": 0,
@@ -107,7 +107,7 @@
       {
         "game": "kuhn_3p",
         "alg_group": 99,
-        "query_budget": 2,
+        "scd_budget": 2,
         "iterations": 5,
         "numeric_tuples": 30,
         "max_absolute_error": 0,
@@ -117,7 +117,7 @@
       {
         "game": "kuhn_3p",
         "alg_group": 99,
-        "query_budget": 4,
+        "scd_budget": 4,
         "iterations": 5,
         "numeric_tuples": 30,
         "max_absolute_error": 0,
@@ -127,7 +127,7 @@
       {
         "game": "leduc",
         "alg_group": 11,
-        "query_budget": 4,
+        "scd_budget": 4,
         "iterations": 5,
         "numeric_tuples": 280,
         "max_absolute_error": 0,
@@ -137,7 +137,7 @@
       {
         "game": "leduc",
         "alg_group": 99,
-        "query_budget": 1,
+        "scd_budget": 1,
         "iterations": 5,
         "numeric_tuples": 30,
         "max_absolute_error": 0,
@@ -147,7 +147,7 @@
       {
         "game": "leduc",
         "alg_group": 99,
-        "query_budget": 2,
+        "scd_budget": 2,
         "iterations": 5,
         "numeric_tuples": 30,
         "max_absolute_error": 0,
@@ -157,7 +157,7 @@
       {
         "game": "leduc",
         "alg_group": 99,
-        "query_budget": 4,
+        "scd_budget": 4,
         "iterations": 5,
         "numeric_tuples": 30,
         "max_absolute_error": 0,
@@ -234,5 +234,6 @@
     "open_spiel/utils/file.cc": "ffd6bd42f010e1f8bc1c273d557bb0d15b3930610a82bae525d7878f7af2ff18",
     "open_spiel/utils/file.h": "11f4a98554b33abcc01e53fc2c65563ff8e3bb2a595d56a389aa36ea994d83e3",
     "open_spiel/utils/serialization.h": "6dcd722bfdb7240b22676a53e4fe4a7cdcb4b6be57153b208d170f96e7f58d52"
-  }
+  },
+  "evidence_context": "Historical validation performed during original packaging, before the SCD naming migration. Identifier fields are normalized to the current namespace; recorded source and executable fingerprints describe the original engine. Current migration checks are in scd_naming_validation.json."
 }

@@ -62,8 +62,8 @@ ABSL_FLAG(double, epsilon, 0.0, "The perturbation parameter for perturbed LTBR."
 ABSL_FLAG(std::string, file_dir, "data/test_results.ssv",
           "The directory to store the results.");
 
-// qbce
-ABSL_FLAG(size_t, query_budget, 0, "The number of queries for k-QBCE.");
+// SCD
+ABSL_FLAG(size_t, scd_budget, 0, "The query budget k for SCD.");
 
 void run_experiment() {
   // 获取游戏id
@@ -123,12 +123,12 @@ void run_experiment() {
   const size_t game_depth = (game_length + num_players - 1) / num_players;
   const size_t alg_group = absl::GetFlag(FLAGS_alg_group); // 1
      // 获取算法组，0表示只测试高效算法，1表示测试高效算法和行为偏差算法，
-     // 2表示测试rt-cfr算法，3表示测试扰动ltbr算法，4表示测试qbce算法，5表示测试qbce_full算法，
-     // 6表示测试不同k-的qbce算法，7表示测试不同k-的qbce-seq算法，
-     // 8表示测试不同k-的qbce-cs算法，9表示测试不同k-的qbce-seq-cs算法
-  // 如果是qbce单一算法测试组 {6,7,8,9}, 使用game_depth作为k值传入算法构造函数， 否则使用FLAGS_query_budget作为k值传入算法构造函数
-  // 10:  表示单独测试infty-QB-EFR、CFR(0-QB-EFR)、1-QB-EFR, CSPS, BHV算法
-  size_t k = (alg_group >= 6 && alg_group <= 9) ? game_depth : absl::GetFlag(FLAGS_query_budget);
+     // 2表示测试rt-cfr算法，3表示测试扰动ltbr算法，4表示测试SCD算法，5表示测试SCD完整对比组，
+     // 6表示测试不同k-的SCD算法，7表示测试不同k-的SCD_SEQ算法，
+     // 8表示测试不同k-的SCD_CS算法，9表示测试不同k-的SCD_SEQ+CS算法
+  // 如果是SCD单一算法测试组 {6,7,8,9}, 使用game_depth作为k值传入算法构造函数， 否则使用FLAGS_scd_budget作为k值传入算法构造函数
+  // 10:  表示单独测试infty-SCD、CFR(0-SCD)、1-SCD, CSPS, BHV算法
+  size_t k = (alg_group >= 6 && alg_group <= 9) ? game_depth : absl::GetFlag(FLAGS_scd_budget);
   const auto labeled_algs = AlgsInGroup(alg_group, k,
    absl::GetFlag(FLAGS_rt_cfr_weight), absl::GetFlag(FLAGS_rt_cfr_T), absl::GetFlag(FLAGS_epsilon));
 

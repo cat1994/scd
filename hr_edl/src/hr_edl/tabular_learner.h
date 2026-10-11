@@ -507,7 +507,7 @@ class ImmediateDecisionInfo : public CachedImmediatePolicy {
         const double instantaneous_regret = pred_reach_prob_lists.prev_[j] * regret;
         regrets[idx] += update_target(regrets[idx], instantaneous_regret, round_number_);
         stage_regrets[idx] += instantaneous_regret;
-        // NOTE: CFR+, relu 更稳定. 在qbce中会导致k值影响消失
+        // NOTE: CFR+, relu 更稳定. 在SCD中会导致k值影响消失
         if (is_cfr_plus_ && regrets[idx] < 0.0) {
           regrets[idx] = 0.0;
         }
@@ -579,7 +579,7 @@ class ImmediateDecisionInfo : public CachedImmediatePolicy {
         // 假设到达该节点的遗憾值reached_regrets,这个值保留
         // reached_regrets[idx] += update_target(
         // reached_regrets[idx], pred_reach_prob_lists.prev_[j] * regret / iwrp, round_number_);
-        // NOTE: CFR+, relu 更稳定. 在qbce中会导致k值影响消失
+        // NOTE: CFR+, relu 更稳定. 在SCD中会导致k值影响消失
         if (is_cfr_plus_) {
           if (regrets[idx] < 0.0) {
             regrets[idx] = 0.0;
@@ -806,10 +806,10 @@ struct BehavioralPredecessors : public NoExternal, public AllInternal {
 // external
 // internal
 // 不限制最大利用请求次数
-struct QueryPredecessors_ : public AllExternal {
+struct UncompressedSCDPredecessors : public AllExternal {
   // 初始化参数的构造函数
-  explicit QueryPredecessors_(size_t query_budget, bool sequential, bool causal)
-      : sequential_(sequential), causal_(causal), query_budget_(query_budget) {}
+  explicit UncompressedSCDPredecessors(size_t scd_budget, bool sequential, bool causal)
+      : sequential_(sequential), causal_(causal), scd_budget_(scd_budget) {}
 
   // 可请求,返回具有请求次数的前驱节点的到达概率，当前节点的state
   // memory数量=前驱节点数量
@@ -857,7 +857,7 @@ struct QueryPredecessors_ : public AllExternal {
       // 判断标准为请求次数是否等于初始查询次数
       for (size_t i = 0; i < pred_remain_queries.size(); ++i) {
         // 如果前驱节点的剩余查询次数小于初始查询次数，说明已经查询过了
-        if (pred_remain_queries[i] < query_budget_) {
+        if (pred_remain_queries[i] < scd_budget_) {
           succ_remain_queries[i] = 0;
         }
       }
@@ -901,7 +901,7 @@ struct QueryPredecessors_ : public AllExternal {
       // 判断标准：请求次数小于预算
       for (size_t i = 0; i < pred_remain_queries.size(); ++i) {
         if (pred_remain_queries[i] <
-            query_budget_) {  // 如果前驱节点的剩余查询次数小于初始查询次数，说明已经查询过了
+            scd_budget_) {  // 如果前驱节点的剩余查询次数小于初始查询次数，说明已经查询过了
           succ_remain_queries[i] = 0;
         }
       }
@@ -928,18 +928,18 @@ struct QueryPredecessors_ : public AllExternal {
     return {pred_reach_probs, pred_remain_queries};
   }
 
-  const size_t query_budget_;
+  const size_t scd_budget_;
   const bool sequential_;
   const bool causal_;
 };
 
 // 最大效率利用请求次数。
-// EFR结构下，由于后续节点采用了recorrelation，并不会考虑未来的请求，
+// 压缩 SCD 结构下，由于后续节点采用了recorrelation，并不会考虑未来的请求，
 // 因此，未提高算法的计算效率，当前节点有多少次请求就用多少次。
-struct QueryPredecessors : QueryPredecessors_ {
+struct SCDPredecessors : UncompressedSCDPredecessors {
   // 初始化参数的构造函数
-  explicit QueryPredecessors(size_t query_budget, bool sequential, bool causal)
-      : QueryPredecessors_(query_budget, sequential, causal) {}
+  explicit SCDPredecessors(size_t scd_budget, bool sequential, bool causal)
+      : UncompressedSCDPredecessors(scd_budget, sequential, causal) {}
 
   // blind: 输出可请求次数为0的前驱节点概率
   std::vector<double> ExternalPredecessorReachProbs(
@@ -964,8 +964,8 @@ struct QueryPredecessors : QueryPredecessors_ {
       const std::vector<size_t>& pred_remain_queries) const {
     std::vector<double> pred_reach_probs_with_max_query;
     assert(pred_reach_probs.size() == pred_remain_queries.size());
-    // 分别对不同的qb结构处理
-    //  qb-EFR or qb-EFR_SEQ: 只输出最小剩余请求次数的前驱节点的到达概率
+    // 分别处理不同的 SCD 结构
+    //  SCD or SCD_SEQ: 只输出最小剩余请求次数的前驱节点的到达概率
     if (!causal_) {
       // Exhausted memories cannot query here. Select the smallest remaining
       // positive budget that is actually present (it need not be 1).
@@ -984,7 +984,7 @@ struct QueryPredecessors : QueryPredecessors_ {
       return pred_reach_probs_with_max_query;
     }
 
-    // qb-cs or qb-seq+cs:
+    // SCD_CS or SCD_SEQ+CS:
     // 只输出剩余请求次数非0的前驱节点的到达概率，这里不限制前驱节点必须请求必遵循的限制，
     // 如果只取最小值，则要求了前驱节点都最大使用了请求次数，并遵循推荐到达。
     // todo: 但是也可以测试只取最小值的情况，看看是否能提高效率
@@ -1108,15 +1108,15 @@ class BehavioralDeviationTabularCfvLearner
         num_players, DeviationSequencePredecessors(), update_target, f);
   }
 
-  // 重载：为像 QueryPredecessors 这样的类型，允许把 k/seq/caus
+  // 重载：为像 SCDPredecessors 这样的类型，允许把 k/seq/caus
   // 传给前驱类型的构造函数
   static std::vector<CfValueTreeLearnerPtr> NewList(size_t num_players,
                                                     _tl::RegretTransformation update_target,
-                                                    _tl::LinkFn f, size_t query_budget,
+                                                    _tl::LinkFn f, size_t scd_budget,
                                                     bool sequential = false, bool causal = false) {
     return CfValueTreeLearner::NewList<BehavioralDeviationTabularCfvLearner>(
-        num_players, DeviationSequencePredecessors(query_budget, sequential, causal), update_target,
-        f, query_budget, sequential, causal);
+        num_players, DeviationSequencePredecessors(scd_budget, sequential, causal), update_target,
+        f, scd_budget, sequential, causal);
   }
 
  private:
@@ -1138,13 +1138,13 @@ class BehavioralDeviationTabularCfvLearner
   // 构造函数
   BehavioralDeviationTabularCfvLearner(DeviationSequencePredecessors dev_seq_predecessors,
                                        const _tl::RegretTransformation& update_target,
-                                       const _tl::LinkFn& f, size_t query_budget = 0,
+                                       const _tl::LinkFn& f, size_t scd_budget = 0,
                                        bool sequential = false, bool causal = false)
       : TabularResponder(),  // 创建一个TabularResponder实例，空的local_info_map_
         update_target_(update_target),
         f_(f),
         dev_seq_predecessors_(std::move(dev_seq_predecessors)),
-        query_budget_(query_budget),
+        scd_budget_(scd_budget),
         sequential_(sequential),
         causal_(causal) {}
   virtual ~BehavioralDeviationTabularCfvLearner() = default;
@@ -1157,7 +1157,7 @@ class BehavioralDeviationTabularCfvLearner
     std::vector<StackState> state_stack(
         cf_value_tree.size());  // 栈，存储当前iss和对应的reach_prob_lists的指针，全部初始化为空指针
     const auto initial_reach_prob_lists = new _tl::ReachProbLists{
-        {1.0}, {1.0}, {query_budget_}};  // 初始化前驱概率列表，常量，prev_和next_都为{1.0}
+        {1.0}, {1.0}, {scd_budget_}};  // 初始化前驱概率列表，常量，prev_和next_都为{1.0}
     int stack_idx = 0;
     // 将所有初始 initial_info_states
     // 入栈，初始化栈所有节点为iss和reach_prob_lists，其到达概率为1
@@ -1407,7 +1407,7 @@ class BehavioralDeviationTabularCfvLearner
   //       }
   //       // 计算每个动作a的后继己方节点的到达概率列表 w^t,w^{t+1}
   //       // _tl::ReachProbLists* successor_reach_prob_lists;
-  //       // 如果采用QueryPredecessors，则使用5参数版本，在编译
+  //       // 如果采用SCDPredecessors，则使用5参数版本，在编译
   //       const auto [succ_reach_probs, succ_remain_queries] =
   //           dev_seq_predecessors_.SuccessorReachProbs(pred_reach_probs->prev_, prev_policy,
   //                                                     num_actions, a,
@@ -1518,7 +1518,7 @@ class BehavioralDeviationTabularCfvLearner
       dev_seq_predecessors_;  // 定义转换信息集和后继节点的到达概率state
                               // memory计算方法
   // double max_reached_phi_regret_ = 0.0; // 最大phi遗憾值
-  const size_t query_budget_;  // query deviation的查询预算
+  const size_t scd_budget_;  // SCD 偏差的查询预算
   const bool sequential_;      // 是否顺序更新
   const bool causal_;          // 是否因果更新
   bool is_cfr_plus_ = true;

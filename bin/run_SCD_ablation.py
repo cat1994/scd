@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Run independent fixed 2x2 SCD ablations for k=1,2,4.
 
-Commands and scheduling are shared with run_all_qbce. Existing results are
+Commands and scheduling are shared with run_all_scd. Existing results are
 never overwritten. --skip-existing requires complete records and matching
 configuration, code fingerprints, and executable bytes.
 """
@@ -16,7 +16,7 @@ import sys
 import uuid
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
-from bin import run_all_qbce as launcher
+from bin import run_all_scd as launcher
 from hr_edl_data.experiment_parameters import SCD_MAIN_ALGORITHMS
 from hr_edl_data.tournament_records import (
     metadata_path, read_metadata, validate_tournament_result,
@@ -31,7 +31,7 @@ def parse_args(argv=None, *, main_experiment=False):
         if main_experiment else __doc__
     ))
     parser.add_argument("--games", nargs="+", choices=sorted(launcher.GAME_MAP), default=list(DEFAULT_GAMES))
-    parser.add_argument("--query-budgets", "--k", dest="query_budgets", nargs="+", type=int, choices=(1, 2, 4), default=[4] if main_experiment else [1, 2, 4])
+    parser.add_argument("--scd-budgets", "--k", dest="scd_budgets", nargs="+", type=int, choices=(1, 2, 4), default=[4] if main_experiment else [1, 2, 4])
     parser.add_argument("--iterations", type=launcher.positive_int, default=1000)
     parser.add_argument("--exe-dir", type=Path, default=Path("hr_edl/build.optimized/bin"))
     parser.add_argument("--data-dir", type=Path, default=Path("outputs/raw/main" if main_experiment else "outputs/raw/ablation"))
@@ -41,11 +41,11 @@ def parse_args(argv=None, *, main_experiment=False):
     parser.add_argument("--skip-existing", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     args = parser.parse_args(argv)
-    if len(set(args.games)) != len(args.games) or len(set(args.query_budgets)) != len(args.query_budgets):
+    if len(set(args.games)) != len(args.games) or len(set(args.scd_budgets)) != len(args.scd_budgets):
         parser.error("games and budgets must not contain duplicates")
-    if main_experiment and args.query_budgets != [4]:
+    if main_experiment and args.scd_budgets != [4]:
         parser.error("the seven-algorithm main pool requires k=4")
-    args.algorithms, args.run_modes = ["qbce_scd_main" if main_experiment else "qbce_test"], ["fixed"]
+    args.algorithms, args.run_modes = ["scd_main" if main_experiment else "scd_ablation"], ["fixed"]
     return args
 
 
@@ -85,18 +85,18 @@ def task_config(experiment, args, snapshot):
     stat = executable.stat()
     algorithms = expected_algorithms(experiment)
     return {
-        "experiment_family": "SCD_ablation" if experiment.algorithm == "qbce_test" else "SCD_main",
+        "experiment_family": "SCD_ablation" if experiment.algorithm == "scd_ablation" else "SCD_main",
         "algorithm_group": experiment.algorithm, "alg_group": launcher.ALG_GROUP_MAP[experiment.algorithm],
         "algorithms": algorithms, "opponent_pool": algorithms,
         "game": experiment.game, "game_definition": launcher.GAME_MAP[experiment.game],
-        "query_budget": experiment.query_budget, "iterations": args.iterations,
+        "scd_budget": experiment.scd_budget, "iterations": args.iterations,
         "mode": "fixed", "sampler": "null", "cfr_plus": args.cfr_plus,
         "threads_per_run": args.threads_per_run, "max_parallel_jobs": args.max_parallel_jobs,
         "epsilon": 0.0,
-        "sequential": False if experiment.algorithm == "qbce_test" else None,
-        "causal": False if experiment.algorithm == "qbce_test" else None,
+        "sequential": False if experiment.algorithm == "scd_ablation" else None,
+        "causal": False if experiment.algorithm == "scd_ablation" else None,
         "algorithm_settings": {name: algorithm_settings(name, args.cfr_plus) for name in algorithms},
-        "analysis_opponent_pool": algorithms if experiment.algorithm == "qbce_test" else
+        "analysis_opponent_pool": algorithms if experiment.algorithm == "scd_ablation" else
             list(SCD_MAIN_ALGORITHMS),
         "round_semantics": "pre_update_ev_then_update_every_round",
         "runtime_scope": "row value tree evaluation and policy update; excludes column self-play, metric reads, output and audit",
@@ -113,11 +113,11 @@ def task_config(experiment, args, snapshot):
 
 def algorithm_settings(name, cfr_plus):
     settings = {"cfr_plus": cfr_plus, "epsilon": 0.0}
-    if match := re.fullmatch(r"(\d+)-(QBC?)-EFR(.*)", name):
-        budget, kind, suffix = match.groups()
-        settings.update(query_budget=int(budget), sequential="SEQ" in suffix,
-                        causal="CS" in suffix,
-                        predecessors="QueryPredecessors_" if kind == "QBC" else "QueryPredecessors")
+    if match := re.fullmatch(r"(\d+)-SCD(_UNCOMPRESSED)?(_(?:SEQ(?:\+CS)?|CS))?", name):
+        budget, uncompressed, suffix = match.groups()
+        settings.update(scd_budget=int(budget), sequential="SEQ" in (suffix or ""),
+                        causal="CS" in (suffix or ""),
+                        predecessors="UncompressedSCDPredecessors" if uncompressed else "SCDPredecessors")
     else:
         settings["predecessors"] = {"CFR": "ImmediateExternalSequencePredecessors",
                                     "CFR_IN": "ImmediateInternalSequencePredecessors",
@@ -128,9 +128,9 @@ def algorithm_settings(name, cfr_plus):
 
 
 def expected_algorithms(experiment):
-    if experiment.algorithm == "qbce_test":
-        return [f"{experiment.query_budget}-QB-EFR", f"{experiment.query_budget}-QBC-EFR"]
-    if experiment.algorithm == "qbce_scd_main":
+    if experiment.algorithm == "scd_ablation":
+        return [f"{experiment.scd_budget}-SCD", f"{experiment.scd_budget}-SCD_UNCOMPRESSED"]
+    if experiment.algorithm == "scd_main":
         return list(SCD_MAIN_ALGORITHMS)
     raise ValueError(f"Unsupported SCD algorithm group: {experiment.algorithm}")
 

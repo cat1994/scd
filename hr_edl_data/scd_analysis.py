@@ -26,8 +26,8 @@ MAIN_POOL = SCD_MAIN_ALGORITHMS
 LABELS = dict(zip(MAIN_POOL, ("SCD_0", "SCD_1", "SCD_2", "SCD_4", "ACT_IN", "CSPS", "BHV")))
 COLORS = dict(zip(MAIN_POOL, ("#7f7f7f", "#d62728", "#ff7f0e", "#1f77b4", "#9467bd", "#2ca02c", "#111111")))
 for _k in (1, 2, 4):
-    LABELS[f"{_k}-QBC-EFR"] = f"SCD_<={_k}"
-    COLORS[f"{_k}-QBC-EFR"] = COLORS[f"{_k}-QB-EFR"]
+    LABELS[f"{_k}-SCD_UNCOMPRESSED"] = f"SCD_<={_k}"
+    COLORS[f"{_k}-SCD_UNCOMPRESSED"] = COLORS[f"{_k}-SCD"]
 
 PLOT_STYLE = {
     "font.family": "serif", "font.size": 29,
@@ -74,7 +74,7 @@ def _row_legend(ax, *, loc="upper right"):
 
 
 def ablation_pool(k):
-    return (f"{k}-QB-EFR", f"{k}-QBC-EFR")
+    return (f"{k}-SCD", f"{k}-SCD_UNCOMPRESSED")
 
 
 def load_data(path):
@@ -155,9 +155,9 @@ def curve_data(frame, game, row_pool, opponent_pool, *, budget=None,
     df = frame[(frame.game_tag == game) & (frame["mode"] == "fixed") &
                frame.row_alg.isin(row_pool) & frame.col_alg.isin(opponent_pool)].copy()
     if budget is not None:
-        if "query_budget" not in df:
-            raise ValueError(f"{game}/k={budget}: query_budget missing")
-        df = df[df.query_budget == budget]
+        if "scd_budget" not in df:
+            raise ValueError(f"{game}/k={budget}: scd_budget missing")
+        df = df[df.scd_budget == budget]
     context = f"{game}" + (f"/k={budget}" if budget is not None else "")
     if df.empty:
         raise ValueError(f"{context}: missing all requested matchups")
@@ -269,7 +269,7 @@ def plot_ablation(frame, output_dir, *, games=GAMES, budgets=(1, 2, 4), smoke=Fa
                     for row, trajectory in curves[game, k].items():
                         y, ylabel = payoff_units(game, trajectory.value)
                         x = trajectory.runtime_seconds if runtime else np.arange(1, len(y) + 1)
-                        full = "QBC" in row
+                        full = "_UNCOMPRESSED" in row
                         label = (rf"$\mathrm{{SCD}}_{{\leq {k}}}$" if full else
                                  rf"$\mathrm{{SCD}}_{{{k}}}$")
                         ax.plot(x, y, label=label, color=COLORS[row],
@@ -310,7 +310,7 @@ def plot_main(frame, output_dir, *, games=GAMES, metric="osr", smoke=False):
     )))
     plot_labels = dict(LABELS)
     for k in (0, 1, 2, 4):
-        plot_labels["CFR" if k == 0 else f"{k}-QB-EFR"] = rf"$\mathrm{{SCD}}_{{{k}}}$"
+        plot_labels["CFR" if k == 0 else f"{k}-SCD"] = rf"$\mathrm{{SCD}}_{{{k}}}$"
     plot_labels["A-EFR_IN"] = r"$\mathrm{ACT}_{\mathrm{IN}}$"
     outputs = []
     with plt.rc_context():
@@ -374,7 +374,7 @@ def assert_main_ablation_compatible(main, ablation):
     games = set(main.game_tag) | set(ablation.game_tag)
     for game in games:
         for k in (1, 2, 4):
-            row = f"{k}-QB-EFR"
+            row = f"{k}-SCD"
             signatures = []
             for frame in (main, ablation):
                 subset = frame[(frame.game_tag == game) & (frame.row_alg == row)]

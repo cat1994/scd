@@ -47,7 +47,7 @@ for family, directory in (("main", args.main_data), ("ablation", args.ablation_d
             raw_hash = hashlib.sha256(raw_path.read_bytes()).hexdigest()
             selected = frame[(frame.game_tag == game) & frame.row_alg.isin(pool)]
             if family == "ablation":
-                selected = selected[selected.query_budget == k]
+                selected = selected[selected.scd_budget == k]
             run_ids = selected.run_id.unique().tolist()
             if len(run_ids) != 1:
                 raise ValueError(f"Expected one deterministic archived run, got {run_ids}")
@@ -70,7 +70,7 @@ for family, directory in (("main", args.main_data), ("ablation", args.ablation_d
             source_records.append({"path": portable_path(raw_path), "sha256": raw_hash})
 order=['kuhn_3p','leduc','random_goofspiel','goofspiel_3p','goofspiel_ascending_3p','sheriff','battleship']
 names={'kuhn_3p':'Kuhn Poker','leduc':'Leduc Poker','random_goofspiel':'Goofspiel (4, R)','goofspiel_3p':r'Goofspiel (4, $\downarrow$)','goofspiel_ascending_3p':r'Goofspiel (4, $\uparrow$)','sheriff':'Sheriff','battleship':'Battleship'}
-methods=['CFR','1-QB-EFR','2-QB-EFR','4-QB-EFR','A-EFR_IN','CSPS-EFR','BEHAV-EFR']
+methods=['CFR','1-SCD','2-SCD','4-SCD','A-EFR_IN','CSPS-EFR','BEHAV-EFR']
 labels=[r'\(\mathrm{SCD}_0\)',r'\(\mathrm{SCD}_1\)',r'\(\mathrm{SCD}_2\)',r'\(\mathrm{SCD}_4\)',r'\(\mathrm{ACT}_{\rm IN}\)','CSPS','BHV']
 runs={}
 for r in audit['runs']:
@@ -108,7 +108,7 @@ ablation=[r'\begin{table*}[t]',r'\centering',r'\caption{Performance after 1000 r
 for game in order:
     for k in [1,2,4]:
         run=runs[('ablation',game,k)]
-        cells=metric_cells(run,f'{k}-QB-EFR')+metric_cells(run,f'{k}-QBC-EFR')
+        cells=metric_cells(run,f'{k}-SCD')+metric_cells(run,f'{k}-SCD_UNCOMPRESSED')
         ablation.append((names[game] if k==1 else '')+' & '+str(k)+' & '+' & '.join(cells)+r'\\')
     ablation.append(r'\hline')
 ablation.extend([r'\end{tabular*}',r'\end{table*}'])
@@ -117,7 +117,7 @@ ablation.extend([r'\end{tabular*}',r'\end{table*}'])
 assert len(data)==91
 (root/'endpoint_data.json').write_text(json.dumps({'sources':source_records,'normalization':'cumulative regret / updates; OSR table cells use 10^-3 units','results':data},indent=2),encoding='utf-8')
 with (root/'endpoint_data.csv').open('w',encoding='utf-8',newline='') as file:
-    writer=csv.DictWriter(file,fieldnames=list(data[0]));writer.writeheader();writer.writerows(data)
+    writer=csv.DictWriter(file,fieldnames=list(data[0]),lineterminator="\n");writer.writeheader();writer.writerows(data)
 print('Created 49 main and 42 ablation endpoint entries and two complete result tables.')
 for game in order:
     print(game)

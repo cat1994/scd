@@ -23,5 +23,6 @@
   "csv_matches_json": true,
   "both_latex_fragments_match_paper": true,
   "no_private_absolute_paths_in_derived_json": true,
-  "osr_note": "Reader divides cumulative regret by update count once; table cells multiply by 1000 for 10^-3 units."
+  "osr_note": "Reader divides cumulative regret by update count once; table cells multiply by 1000 for 10^-3 units.",
+  "evidence_context": "Historical validation performed during original packaging, before the SCD naming migration. Identifier fields are normalized to the current namespace; recorded source and executable fingerprints describe the original engine. Current migration checks are in scd_naming_validation.json."
 }

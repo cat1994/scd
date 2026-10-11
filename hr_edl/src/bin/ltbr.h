@@ -266,66 +266,70 @@ const std::vector<LabeledAdaptiveProfile> ltbr_cfr_pbce_full_algs{
         }},
 };
 
-inline std::vector<LabeledAdaptiveProfile> qbce_cfr_algs(size_t query_budget) {
+inline std::vector<LabeledAdaptiveProfile> scd_algs(size_t scd_budget) {
   return {
       LabeledAdaptiveProfile{
-          "QB-EFR",
-          [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, false, false)));
+          "SCD",
+          [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::SCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, false, false)));
           }},
       LabeledAdaptiveProfile{
-          "QB-EFR_SEQ",
-          [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, true, false)));
+          "SCD_SEQ",
+          [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::SCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, true, false)));
           }},
       LabeledAdaptiveProfile{
-          "QB-EFR_CS",
-          [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, false, true)));
+          "SCD_CS",
+          [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::SCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, false, true)));
           }},
       LabeledAdaptiveProfile{
-          "QB-EFR_SEQ+CS", [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, true, true)));
+          "SCD_SEQ+CS", [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::SCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, true, true)));
           }}};
 }
 
-// qbc: 包含了<=k的结构
-inline std::vector<LabeledAdaptiveProfile> qbce_cfr_algs_(size_t query_budget) {
+// 未压缩 SCD：保留请求次数 <= k 的全部结构
+inline std::vector<LabeledAdaptiveProfile> scd_uncompressed_algs(size_t scd_budget) {
   return {
       LabeledAdaptiveProfile{
-          "QBC-EFR",
-          [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors_>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, false, false)));
+          "SCD_UNCOMPRESSED",
+          [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<
+                    hr_edl::UncompressedSCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, false, false)));
           }},
       LabeledAdaptiveProfile{
-          "QBC-EFR_SEQ",
-          [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors_>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, true, false)));
+          "SCD_UNCOMPRESSED_SEQ",
+          [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<
+                    hr_edl::UncompressedSCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, true, false)));
           }},
       LabeledAdaptiveProfile{
-          "QBC-EFR_CS",
-          [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors_>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, false, true)));
+          "SCD_UNCOMPRESSED_CS",
+          [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<
+                    hr_edl::UncompressedSCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, false, true)));
           }},
       LabeledAdaptiveProfile{
-          "QBC-EFR_SEQ+CS", [query_budget](size_t num_players, double utility_diameter) {
-            return hr_edl::AdaptiveProfilePtr(new hr_edl::QBCECfTreeLearnerProfile(
-                hr_edl::BehavioralDeviationTabularCfvLearner<hr_edl::QueryPredecessors_>::NewList(
-                    num_players, RmUpdate, RmLink, query_budget, true, true)));
+          "SCD_UNCOMPRESSED_SEQ+CS", [scd_budget](size_t num_players, double utility_diameter) {
+            return hr_edl::AdaptiveProfilePtr(new hr_edl::SCDCfTreeLearnerProfile(
+                hr_edl::BehavioralDeviationTabularCfvLearner<
+                    hr_edl::UncompressedSCDPredecessors>::NewList(
+                    num_players, RmUpdate, RmLink, scd_budget, true, true)));
           }}};
 }
 
@@ -354,20 +358,20 @@ inline std::vector<LabeledAdaptiveProfile> ltbr_cfr_bhv_algs{
                   num_players, RmUpdate, RmLink)));
         }}};
 
-inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t query_budget = 0,
+inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t scd_budget = 0,
                                                        double rt_cfr_weight = 0.0,
                                                        size_t rt_cfr_T = 1, double epsilon = 0.0) {
   std::vector<LabeledAdaptiveProfile> algs;
-  // 根据k生成不同k-的QBCE算法,最多4个,包含1, 2, 4, 8-QBCE算法
-  std::vector<size_t> qbce_k_groups;
+  // 根据k生成不同k-的SCD算法,最多4个,包含1, 2, 4, 8-SCD算法
+  std::vector<size_t> scd_k_groups;
   for (size_t k = 1; k <= 8; k *= 2) {
-    qbce_k_groups.push_back(k);
-    if (k >= query_budget) {
+    scd_k_groups.push_back(k);
+    if (k >= scd_budget) {
       break;
     }
   }
   // {1, 2, 4, 8}; //
-  // 定义qbce_mode的alg_group值，例如6表示测试不同k-的QBCE，7表示测试不同k-的SEQ-QBCE
+  // alg_group 为 6 时测试不同 k-SCD，为 7 时测试不同 k-SCD_SEQ
   if (alg_group == 0 or alg_group == 1) {  // add ltbr algs
     for (const auto& alg : ltbr_cfr_algs) {
       algs.push_back(alg);
@@ -389,18 +393,18 @@ inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t 
     }
   }
 
-  // NOTE：QBCE
-  if (alg_group == 4) {  // add qbce algs
-    for (auto& alg : qbce_cfr_algs(query_budget)) {
-      // 替换label为不同k-的形式，例如1-QB-EFR, 2-QB-EFR, ...
-      if (absl::StrContains(alg.label_, "QB-EFR")) {
-        alg.label_ = absl::StrFormat("%d-%s", query_budget, alg.label_);
+  // NOTE：SCD
+  if (alg_group == 4) {  // add SCD algs
+    for (auto& alg : scd_algs(scd_budget)) {
+      // 替换label为不同k-的形式，例如1-SCD, 2-SCD, ...
+      if (absl::StrContains(alg.label_, "SCD")) {
+        alg.label_ = absl::StrFormat("%d-%s", scd_budget, alg.label_);
       }
       algs.push_back(alg);
     }
   }
 
-  // CSPS, CF, CF_IN, BHV, k-QB-EFR, K-QB-EFR_SEQ, K-QB-EFR_CS, K-QB-EFR_SEQ+CS
+  // CSPS, CF, CF_IN, BHV, k-SCD, K-SCD_SEQ, K-SCD_CS, K-SCD_SEQ+CS
   if (alg_group == 5) {
     for (const auto& alg : ltbr_cfr_pbce_full_algs) {
       algs.push_back(alg);
@@ -408,31 +412,31 @@ inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t 
     for (const auto& alg : expensive_cfr_algs) {
       algs.push_back(alg);
     }
-    for (auto& alg : qbce_cfr_algs(query_budget)) {
-      // 替换label为不同k-的形式，例如1-QB-EFR, 2-QB-EFR, ...
-      if (absl::StrContains(alg.label_, "QB-EFR")) {
-        alg.label_ = absl::StrFormat("%d-%s", query_budget, alg.label_);
+    for (auto& alg : scd_algs(scd_budget)) {
+      // 替换label为不同k-的形式，例如1-SCD, 2-SCD, ...
+      if (absl::StrContains(alg.label_, "SCD")) {
+        alg.label_ = absl::StrFormat("%d-%s", scd_budget, alg.label_);
       }
       algs.push_back(alg);
     }
   }
 
-  // 只选择QB-EFR算法，并且替换label为不同k-的形式，例如1-QB-EFR, 2-QB-EFR, ...
+  // 只选择SCD算法，并且替换label为不同k-的形式，例如1-SCD, 2-SCD, ...
   if (alg_group == 6) {  //
-    for (const size_t k : qbce_k_groups) {
-      for (auto& alg : qbce_cfr_algs(k)) {
-        if (alg.label_ == "QB-EFR") {
+    for (const size_t k : scd_k_groups) {
+      for (auto& alg : scd_algs(k)) {
+        if (alg.label_ == "SCD") {
           alg.label_ = absl::StrFormat("%d-%s", k, alg.label_);
           algs.push_back(alg);
         }
       }
     }
   }
-  // 只选择QB-EFR-SEQ算法，并且替换label为不同k-的形式，例如1-QB-EFR_SEQ, 2-QB-EFR_SEQ, ...
+  // 只选择SCD_SEQ算法，并且替换label为不同k-的形式，例如1-SCD_SEQ, 2-SCD_SEQ, ...
   if (alg_group == 7) {
-    for (const size_t k : qbce_k_groups) {
-      for (auto& alg : qbce_cfr_algs(k)) {
-        if (alg.label_ == "QB-EFR_SEQ") {
+    for (const size_t k : scd_k_groups) {
+      for (auto& alg : scd_algs(k)) {
+        if (alg.label_ == "SCD_SEQ") {
           alg.label_ = absl::StrFormat("%d-%s", k, alg.label_);
           algs.push_back(alg);
         }
@@ -440,22 +444,22 @@ inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t 
     }
   }
 
-  // 只选择QB-EFR-CS算法，并且替换label为不同k-的形式，例如1-QB-EFR_CS, 2-QB-EFR_CS, ...
+  // 只选择SCD_CS算法，并且替换label为不同k-的形式，例如1-SCD_CS, 2-SCD_CS, ...
   if (alg_group == 8) {
-    for (const size_t k : qbce_k_groups) {
-      for (auto& alg : qbce_cfr_algs(k)) {
-        if (alg.label_ == "QB-EFR_CS") {
+    for (const size_t k : scd_k_groups) {
+      for (auto& alg : scd_algs(k)) {
+        if (alg.label_ == "SCD_CS") {
           alg.label_ = absl::StrFormat("%d-%s", k, alg.label_);
           algs.push_back(alg);
         }
       }
     }
   }
-  // 只选择QB-EFR-SEQ+CS算法，并且替换label为不同k-的形式，例如1-QB-EFR_SEQ+CS, 2-QB-EFR_SEQ+CS, ...
+  // 只选择SCD_SEQ+CS算法，并且替换label为不同k-的形式，例如1-SCD_SEQ+CS, 2-SCD_SEQ+CS, ...
   if (alg_group == 9) {
-    for (const size_t k : qbce_k_groups) {
-      for (auto& alg : qbce_cfr_algs(k)) {
-        if (alg.label_ == "QB-EFR_SEQ+CS") {
+    for (const size_t k : scd_k_groups) {
+      for (auto& alg : scd_algs(k)) {
+        if (alg.label_ == "SCD_SEQ+CS") {
           alg.label_ = absl::StrFormat("%d-%s", k, alg.label_);
           algs.push_back(alg);
         }
@@ -463,15 +467,15 @@ inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t 
     }
   }
 
-  // 总体测试:  1-QB-EFR、
-  // {2, 4} - {QB-EFR, -QB-EFR_SEQ, -QB-EFR_CS, -QB-EFR_SEQ+CS}
-  // ACT, CF/0-QB-EFR, CF_IN, CFPS-EFR、BHV/infty-QB-EFR算法
+  // 总体测试:  1-SCD、
+  // {2, 4} - {SCD, -SCD_SEQ, -SCD_CS, -SCD_SEQ+CS}
+  // ACT, CF/0-SCD, CF_IN, CFPS-EFR、BHV/infty-SCD算法
 
   // Select the seven SCD main methods before learners are instantiated.
   if (alg_group == 11) {
-    const auto full_group = AlgsInGroup(10, query_budget, rt_cfr_weight,
+    const auto full_group = AlgsInGroup(10, scd_budget, rt_cfr_weight,
                                       rt_cfr_T, epsilon);
-    for (const char* label : {"CFR", "1-QB-EFR", "2-QB-EFR", "4-QB-EFR",
+    for (const char* label : {"CFR", "1-SCD", "2-SCD", "4-SCD",
                               "A-EFR_IN", "CSPS-EFR", "BEHAV-EFR"}) {
       for (const auto& alg : full_group) {
         if (alg.label_ == label) algs.push_back(alg);
@@ -485,7 +489,7 @@ inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t 
       if (alg.label_ == "A-EFR_IN") {
         algs.push_back(alg);
       }
-      // CFR/0-QB-EFR
+      // CFR/0-SCD
       if (alg.label_ == "CFR") {
         algs.push_back(alg);
       }
@@ -502,23 +506,23 @@ inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t 
     for (const auto& alg : expensive_cfr_algs) {
       algs.push_back(alg);
     }
-    // assert (!qbce_k_groups.empty());
-    //  1-QB-EFR
-    if (query_budget >= 1) {
-      for (auto& alg : qbce_cfr_algs(1)) {
-        if (alg.label_ == "QB-EFR") {
+    // assert (!scd_k_groups.empty());
+    //  1-SCD
+    if (scd_budget >= 1) {
+      for (auto& alg : scd_algs(1)) {
+        if (alg.label_ == "SCD") {
           alg.label_ = absl::StrFormat("%d-%s", 1, alg.label_);
           algs.push_back(alg);
         }
       }
     }
 
-    // 2/4 -QB-EFR, -QB-EFR_SEQ, -QB-EFR_CS, -QB-EFR_SEQ+CS
+    // 2/4 -SCD, -SCD_SEQ, -SCD_CS, -SCD_SEQ+CS
     for (auto k : {2, 4}) {
-      if (k > query_budget) continue;
-      for (auto& alg : qbce_cfr_algs(k)) {
-        if (alg.label_ == "QB-EFR" || alg.label_ == "QB-EFR_SEQ" || alg.label_ == "QB-EFR_CS" ||
-            alg.label_ == "QB-EFR_SEQ+CS") {
+      if (k > scd_budget) continue;
+      for (auto& alg : scd_algs(k)) {
+        if (alg.label_ == "SCD" || alg.label_ == "SCD_SEQ" || alg.label_ == "SCD_CS" ||
+            alg.label_ == "SCD_SEQ+CS") {
           alg.label_ = absl::StrFormat("%d-%s", k, alg.label_);
           algs.push_back(alg);
         }
@@ -526,20 +530,20 @@ inline std::vector<LabeledAdaptiveProfile> AlgsInGroup(size_t alg_group, size_t 
     }
   }
 
-  // test qbc和qb的区别
+  // 比较未压缩 SCD 与压缩 SCD
   if (alg_group == 99) {
     // for (const auto& alg : expensive_cfr_algs) {
     //   algs.push_back(alg);
     // }
-    for (auto& alg : qbce_cfr_algs(query_budget)) {
-      if (alg.label_ == "QB-EFR") {
-        alg.label_ = absl::StrFormat("%d-%s", query_budget, alg.label_);
+    for (auto& alg : scd_algs(scd_budget)) {
+      if (alg.label_ == "SCD") {
+        alg.label_ = absl::StrFormat("%d-%s", scd_budget, alg.label_);
         algs.push_back(alg);
       }
     }
-    for (auto& alg : qbce_cfr_algs_(query_budget)) {
-      if (alg.label_ == "QBC-EFR") {
-        alg.label_ = absl::StrFormat("%d-%s", query_budget, alg.label_);
+    for (auto& alg : scd_uncompressed_algs(scd_budget)) {
+      if (alg.label_ == "SCD_UNCOMPRESSED") {
+        alg.label_ = absl::StrFormat("%d-%s", scd_budget, alg.label_);
         algs.push_back(alg);
       }
     }
