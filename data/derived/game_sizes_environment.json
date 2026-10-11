@@ -1,0 +1,6 @@
+{
+  "packages": {
+    "open-spiel": "1.4"
+  },
+  "note": "Archived statistics and independent reproduction use the Python OpenSpiel 1.4 package. The experiment executable has a separately recorded C++ dependency."
+}

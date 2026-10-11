@@ -1,0 +1,35 @@
+{
+  "open_spiel": "1.4",
+  "default_output": "outputs/stats",
+  "archive_untouched": true,
+  "checks": [
+    {
+      "script": "count_game_sizes.py",
+      "exit_code": 0
+    },
+    {
+      "script": "count_memory_depth.py",
+      "exit_code": 0
+    },
+    {
+      "script": "audit_game_utilities.py",
+      "exit_code": 0
+    },
+    {
+      "artifact": "game_sizes.json",
+      "scientific_fields_match_archived": true
+    },
+    {
+      "artifact": "memory_depths.json",
+      "scientific_fields_match_archived": true
+    },
+    {
+      "artifact": "decision_counts.json",
+      "scientific_fields_match_archived": true
+    },
+    {
+      "artifact": "game_utilities.json",
+      "scientific_fields_match_archived": true
+    }
+  ]
+}

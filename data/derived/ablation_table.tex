@@ -1,0 +1,43 @@
+\begin{table*}[t]
+\centering
+\caption{Performance after 1000 rounds in the compression ablation. Each budget uses its own two-method opponent pool, including the independent self-play environments of both methods. OSR gap is the maximum positive cumulative local regret divided by \(1000\) and averaged over the two environments, displayed in units of \(10^{-3}\); Value uses the same game-specific cumulative-payoff scales as Table~\ref{tab:main-endpoints}; Runtime is cumulative learner time in seconds. The main and ablation tables use different opponent pools.}
+\label{tab:ablation-endpoints}
+\fontsize{8.5}{11}\selectfont
+\renewcommand{\arraystretch}{1.08}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcrrrrrr@{}}
+\hline
+Game & \(k\) & \multicolumn{3}{c}{Compressed \(\mathrm{SCD}_k\)} & \multicolumn{3}{c}{Uncompressed \(\mathrm{SCD}_{\le k}\)}\\
+\cline{3-5}\cline{6-8}
+ & & OSR gap \((\cdot10^{-3})\) & Value & Runtime (s) & OSR gap \((\cdot10^{-3})\) & Value & Runtime (s)\\
+\hline
+Kuhn Poker & 1 & 1.789 & 0.03 & 0.32 & 1.839 & -0.01 & 0.32\\
+ & 2 & 1.839 & -0.03 & 0.31 & 1.839 & 0.05 & 0.31\\
+ & 4 & 1.839 & -0.03 & 0.31 & 1.839 & 0.05 & 0.31\\
+\hline
+Leduc Poker & 1 & 2.247 & 29.74 & 12.33 & 2.702 & 9.32 & 11.72\\
+ & 2 & 1.694 & 16.73 & 12.83 & 2.448 & 23.22 & 12.46\\
+ & 4 & 2.399 & 23.37 & 11.99 & 2.829 & 21.15 & 12.53\\
+\hline
+Goofspiel (4, R) & 1 & 2.005 & 51.35 & 53.16 & 3.760 & 50.52 & 52.41\\
+ & 2 & 2.359 & 50.60 & 55.14 & 3.641 & 50.44 & 55.36\\
+ & 4 & 1.820 & 50.64 & 54.25 & 4.181 & 50.75 & 58.38\\
+\hline
+Goofspiel (4, $\downarrow$) & 1 & 1.216 & 49.99 & 71.18 & 2.058 & 50.02 & 71.22\\
+ & 2 & 1.169 & 49.99 & 76.56 & 2.057 & 50.03 & 76.82\\
+ & 4 & 1.176 & 49.99 & 73.68 & 2.060 & 50.03 & 73.99\\
+\hline
+Goofspiel (4, $\uparrow$) & 1 & 3.583 & 50.00 & 69.81 & 4.699 & 49.97 & 69.80\\
+ & 2 & 5.704 & 50.87 & 75.57 & 6.997 & 49.95 & 75.59\\
+ & 4 & 3.768 & 50.24 & 75.27 & 6.269 & 50.05 & 75.78\\
+\hline
+Sheriff & 1 & 32.760 & 0.54263 & 53.90 & 52.144 & 0.55111 & 53.35\\
+ & 2 & 23.213 & 0.55767 & 78.67 & 33.186 & 0.50086 & 80.18\\
+ & 4 & 11.434 & 0.63747 & 186.17 & 32.802 & 0.49378 & 269.19\\
+\hline
+Battleship & 1 & 1.964 & 0.01171 & 26.91 & 4.189 & 0.00016 & 26.50\\
+ & 2 & 1.355 & 0.01993 & 31.68 & 2.822 & 0.00722 & 32.41\\
+ & 4 & 1.841 & 0.02916 & 34.05 & 3.532 & 0.00674 & 41.02\\
+\hline
+\end{tabular*}
+\end{table*}

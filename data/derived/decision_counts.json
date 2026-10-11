@@ -1,0 +1,36 @@
+{
+  "source": "data/derived/memory_depths.json",
+  "source_sha256": "83d5a66aaafd96c4a63b9c2c25feebc0cd9c31c6c231461ddd080311c6a59c72",
+  "definition": "1 + max d_I; maximum decisions made by a single player along a play, including the current decision and excluding chance transitions",
+  "recommendation_limit": "At most one observed recommendation per own decision",
+  "results": [
+    {
+      "game": "kuhn_3p",
+      "max_player_decisions": 2
+    },
+    {
+      "game": "leduc",
+      "max_player_decisions": 4
+    },
+    {
+      "game": "random_goofspiel",
+      "max_player_decisions": 3
+    },
+    {
+      "game": "goofspiel_3p",
+      "max_player_decisions": 3
+    },
+    {
+      "game": "goofspiel_ascending_3p",
+      "max_player_decisions": 3
+    },
+    {
+      "game": "sheriff",
+      "max_player_decisions": 5
+    },
+    {
+      "game": "battleship",
+      "max_player_decisions": 3
+    }
+  ]
+}

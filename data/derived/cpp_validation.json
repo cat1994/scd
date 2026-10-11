@@ -1,0 +1,238 @@
+{
+  "scope": {
+    "executables": [
+      "run_fixed_ltbr",
+      "show_game_size",
+      "show_max_and_min_utilities"
+    ],
+    "registered_game_types": [
+      "kuhn_poker",
+      "leduc_poker",
+      "goofspiel",
+      "sheriff",
+      "battleship",
+      "efg_game"
+    ],
+    "source_preservation": "All 28 first-party .h/.cc files copied byte-for-byte; all match archived source hashes. Only build files were rewritten. Shared headers retain legacy algorithm definitions for compatibility.",
+    "excluded": [
+      "PBCE/simultaneous/correlation executables",
+      "unrelated OpenSpiel games, algorithms, bots and Python bindings",
+      "Git histories, original binaries, original environment files"
+    ]
+  },
+  "dependencies": {
+    "open_spiel": {
+      "declared_pin": "53eeb6127578f91e88a6c0451983d10e3509446d",
+      "pin_evidence": "Declared in the original build recipe. Dependency has no standalone Git repository, so the pin is not independently verified. Vendored files reproduce the local source snapshot.",
+      "license": "Apache-2.0",
+      "license_note": "Original source headers retained. Standard Apache-2.0 text copied from bundled Abseil LICENSE because original OpenSpiel subdirectory lacked a standalone LICENSE."
+    },
+    "eigen": {
+      "commit": "39ec31c0adbdde6b8cda36b3415e9cc2af20dab6",
+      "version_macros": "3.3.90",
+      "scope": "Eigen headers and all original COPYING files"
+    },
+    "abseil": {
+      "tag": "20200923.3",
+      "commit": "6f9d96a1f41439ac172ee2ef7ccd8edf0e5d068c",
+      "license": "Apache-2.0",
+      "scope": "absl and CMake sources; excludes Git, CI, test data, benchmark and test .cc files"
+    }
+  },
+  "build": {
+    "compiler": "GNU C++ 11.4.0",
+    "standard": "GNU C++17",
+    "type": "Release",
+    "directory": "hr_edl/build.optimized",
+    "result": "pass",
+    "optimization": "-O3 -DNDEBUG -march=native -funroll-loops",
+    "native_option": "SCD_NATIVE_OPTIMIZATION=ON (default); set OFF for a portable build.",
+    "numerical_caution": "Matching the original optimization flags is necessary for the observed archived trajectories: a generic -O3 build differed in 12 of 280 Leduc main five-tuples over the first five rounds; the native build matched all scientific fields exactly. CPU/compiler differences can affect trajectories near regret ties.",
+    "warnings": "Existing deprecated helper warnings; no compilation errors."
+  },
+  "tests": {
+    "pass": [
+      "scd_local_coverage_test",
+      "tabular_learner_test",
+      "action_transformation_test"
+    ],
+    "all_seven_paper_games_registered": true,
+    "utility_smoke": {
+      "show_game_size": "Loading kuhn_poker(players=3)\nLoaded\nCreated new initial state\n# kuhn_poker(players=3)\n# player  num_info_sets  min_|A|  max_|A|  min_depth  max_depth\n1  16  2  2  1  2\n2  16  2  2  1  2\n3  16  2  2  1  1\n0  48  2  2  1  2",
+      "show_max_and_min_utilities": "[-2, 4] or [-3, +3]"
+    },
+    "omitted_legacy_test": {
+      "name": "policy_evaluation_test",
+      "failure": "policy_evaluation_test.cc:34 num_decision_histories1 == num_decision_histories3; 450 != 3780",
+      "original_binary_control": "Running the original preexisting optimized test binary produces the exact same failure. No scientific implementation was changed to bypass the assertion.",
+      "reason": "Preexisting unrelated generic test omitted from the extracted publication validation suite."
+    }
+  },
+  "archived_data_comparison": {
+    "fields": [
+      "expected_value",
+      "max_full_phi_regret_fus",
+      "retained_local_regret_numerator"
+    ],
+    "excluded_fields": [
+      "milliseconds",
+      "diagnostic_milliseconds"
+    ],
+    "tolerance": {
+      "relative": 1e-12,
+      "absolute": 1e-12
+    },
+    "result": "Exact equality of all non-NaN compared scientific fields in eight five-round cases; expected NaNs agree.",
+    "cases": [
+      {
+        "game": "kuhn_3p",
+        "alg_group": 11,
+        "query_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 280,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      },
+      {
+        "game": "kuhn_3p",
+        "alg_group": 99,
+        "query_budget": 1,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      },
+      {
+        "game": "kuhn_3p",
+        "alg_group": 99,
+        "query_budget": 2,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      },
+      {
+        "game": "kuhn_3p",
+        "alg_group": 99,
+        "query_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      },
+      {
+        "game": "leduc",
+        "alg_group": 11,
+        "query_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 280,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      },
+      {
+        "game": "leduc",
+        "alg_group": 99,
+        "query_budget": 1,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      },
+      {
+        "game": "leduc",
+        "alg_group": 99,
+        "query_budget": 2,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      },
+      {
+        "game": "leduc",
+        "alg_group": 99,
+        "query_budget": 4,
+        "iterations": 5,
+        "numeric_tuples": 30,
+        "max_absolute_error": 0,
+        "mismatches": 0,
+        "first_mismatch": []
+      }
+    ]
+  },
+  "archived_scientific_source_hashes_checked": 28,
+  "source_sha256": {
+    "bin/ltbr.h": "9011adc1383032f2e34cb15ac3b0fe433c9c7eb98b0c687fa8da370aebb4b40d",
+    "bin/run_fixed_ltbr.cc": "b238b81abdcf79e1dc5a48fa8834d86c013ef3ddfa12d204744e64146b0258ae",
+    "bin/show_game_size.cc": "7e56b5b00336618c4b3f9ac16ce0317d76a64a724346ea3f6ec9502d09440b55",
+    "bin/show_max_and_min_utilities.cc": "fc27f2ee85a6d624859f9f21e8db5f1c8da2c2a8bcd085d7fdf600a3e3ea4729",
+    "hr_edl/action_transformation.h": "bdd6043c5f6e737c0fa324c195b593b249ef8f567e667c50732590db42e32e2b",
+    "hr_edl/action_transformation_test.cc": "673f1be8613f7df79d0d456e01251ee6d7db2da2e985cc0d3d7c21b52e404248",
+    "hr_edl/adaptive_profile.h": "4976302c7429fb82a7e26064627d01191b17c4146ceb8791b6d085f03c6e6fe2",
+    "hr_edl/best_response.cc": "142610735cd2ce2633c2c1c8b5de21c4bbc2583090d86980009773d8d87d060a",
+    "hr_edl/best_response.h": "34fbc76e12a5a9edf984b2d5b7084c7d6af830676f93ddacde4740b12033c0a9",
+    "hr_edl/containers.h": "f53fa37d147e50a6019ce17f983cf7544d4410c8f039bbda655308883c7ba206",
+    "hr_edl/decision_point.cc": "7d24f53e80cb50b6583ce3fd77ba03968c9993521639ea61d0d874f8fdcdc280",
+    "hr_edl/decision_point.h": "761f0aa7d7a93239b3b37ab0223f6c5b9b2686a2fa9444e4540abf5657ea7d28",
+    "hr_edl/enumeration.h": "e452945a4a6e902a0690795042a93bef7a3931788707490f9c2d7b799054f3a4",
+    "hr_edl/math.cc": "5ee1ba98a74449a143a0ea401fd425871635b77a628e1dd3c9b24710f78a5630",
+    "hr_edl/math.h": "36a7dae7174e1433e6ef10a764b1b4eba6eff7bab1d82c67d0916ab03365d8bb",
+    "hr_edl/policy.h": "77a10474b7641640e5f6c51e5149dff5a6615aa239b3633b05f1d706f9ef4db0",
+    "hr_edl/policy_evaluation.cc": "ca2af247f58cee36a3fa6b90c19a7f22ff2bdb83db143b5d50a0ba894a304cd3",
+    "hr_edl/policy_evaluation.h": "320c378bc16ec8faeac69c832498e0b3cf4c8cace709c7599ff53468ebac2cc1",
+    "hr_edl/samplers.cc": "60a97f6d561a6ce891d8330ab7e11facab8e1dbea8423ea353d4e262ad2a53fd",
+    "hr_edl/samplers.h": "8345320f00456b7b86935ca1fd4471a3f5445559f428bda0925c9d2646ed7971",
+    "hr_edl/scd_local_coverage_test.cc": "e86c4f3d811e44fe84f2208f0c8dff2f0886046cc5aad01b2054f2cb6b8638d0",
+    "hr_edl/spiel_extra.cc": "6313de3d0a8cb7418048b6abed9c125a58342db112f3bb2f48475f6fe63b26fc",
+    "hr_edl/spiel_extra.h": "b5a8935fdaaeebcf4de8692dbb7b067967a26bb84f2e793bd481a07bf0b0b205",
+    "hr_edl/stopwatch.h": "339d00484e531aafeebd9ee1d92036cf12d854b0f0f3c3e363eb507ab44390de",
+    "hr_edl/tabular_learner.h": "99c2efc06576ac599636572c7364293280e30ea4869ac7926edaaaf42e0fffcd",
+    "hr_edl/tabular_learner_test.cc": "6f0ab53642428ad3780c9673a96a3fec42cbb787f4f3b2083b577dbfa331871f",
+    "hr_edl/test_extra.h": "bb91fccd613c0034c536d76c4f4316f3a21ea3a8637b202624b090bf9b21dbf7",
+    "hr_edl/types.h": "28187e8f8af7c2f53254e2321c3e403b18c398a0d6f5c46a4413e401d126d9a3",
+    "open_spiel/action_view.cc": "db892e88834ba30426c40b5bf53ae1cb6cb3ea55d5540f42bf371a1bd40f0c7e",
+    "open_spiel/action_view.h": "f97af044b57b9f1bda0be88590c79e5f8b2ceaaeab86290e1d556bcc29444d2c",
+    "open_spiel/game_parameters.cc": "dfcf66725495a12deef205ea207902487288fe18ef766578df82754114ef6847",
+    "open_spiel/game_parameters.h": "972581585e1118391d0e9e2686af3f1605d3327f3713fae6655496dd6cf758e7",
+    "open_spiel/matrix_game.cc": "6b914d40137bd85279c8f26a2bab0cdb733091037635fba9c713715df9cd93ab",
+    "open_spiel/matrix_game.h": "2641fd816f6bf90c33bc600d9b570e21f6a540e56e036f0cd916dc1c260c52bb",
+    "open_spiel/normal_form_game.h": "3915f697efd0c8cb9e6289f16a32b7f7962395e40ef1868b216a7af9fb9d7fbd",
+    "open_spiel/observer.cc": "4925111065fe842efe3eddfc6019ddd76486c1aebf89e032c9c12b86131981ab",
+    "open_spiel/observer.h": "a370527786063b97901e5600ddc2005b9cd524e77e8c9818f8671e045d8e7141",
+    "open_spiel/policy.cc": "d124fad06eb2baabb9b8797f2f0306319ec948c42127cc052865c2fa169c7448",
+    "open_spiel/policy.h": "2a32d22ba4eade015a66300d02e0fa2a0d7a1b3933a458517f86ffc2f087021c",
+    "open_spiel/simultaneous_move_game.cc": "eb3eba10be33643cca6569a4366cd8acca385140975e5946b74d1bbe0d9b54b6",
+    "open_spiel/simultaneous_move_game.h": "2e2d1eeb1f1fa14e1cf5fa8d840947a00c8fcb5ba9b464168c2953c3745dbf14",
+    "open_spiel/spiel.cc": "9245042fe874c794fc23cef0bda32c74ac4f70ab413cc6eee100a9c5e5094243",
+    "open_spiel/spiel.h": "6178290c06f9acb75e20b3defb8ce3c4b9eea2993fbc36099b6cc6e0f407fcd0",
+    "open_spiel/spiel_globals.h": "5db5f3ba8e077a6da00fe0d7d99fed682828d0446d815a88d457b636b4e4790d",
+    "open_spiel/spiel_utils.cc": "407c35f717c912e78e25452812ec56a3fa619baafb9d9acccaf34a145b0882f2",
+    "open_spiel/spiel_utils.h": "c8903690d8cf61a72d214f1683502792cd40f4221d3ad9d56f794ff399b9cfff",
+    "open_spiel/fog/fog_constants.h": "895a97b7bff99f6bdceb5b7d1adefa1beefeec6be8be1c41bc0534525c0d2037",
+    "open_spiel/game_transforms/turn_based_simultaneous_game.cc": "1c4cc06033bee5d744d19c2588d9d3c8cafccd432f83ab15821b33eefedb29fa",
+    "open_spiel/game_transforms/turn_based_simultaneous_game.h": "ed55f0c32b2fa4d99d54fd43c59aaa775df93b6806dc2e3e34fb44428f60d91a",
+    "open_spiel/games/battleship.cc": "3451503b43e3db3bc407321420e66aeba621dc30420c63284c70fc29dc25e834",
+    "open_spiel/games/battleship.h": "dc9136c841dd0e77494eb2cc020fa9bb7337b6e211e357443c07a264dec7fa2d",
+    "open_spiel/games/battleship_types.cc": "05fb6246d5036c124069300f14077412ba63f369784ce372add3e66a26158cd1",
+    "open_spiel/games/battleship_types.h": "b70bf10cfca4c7a9bc025014af3a8abd10a2a4970075ffba064893d74a03f647",
+    "open_spiel/games/efg_game.cc": "e948287cca7f83ec280699c5d7b21a1232942199ab3db14cf0d40afc72b6f43d",
+    "open_spiel/games/efg_game.h": "0c7d553e2d5f5f19543bf42f21bd0e255c42e470e91ab4bf190a7696711b1f6f",
+    "open_spiel/games/goofspiel.cc": "7ce7aabf7fe8ebd9058e11b3a7bcff934aeddb99510e5933e08d57ed38e7fed3",
+    "open_spiel/games/goofspiel.h": "4efb2be2982b378d0288105f9b2ebe1e86c7d99e54c2fbf76d2670f8ebb2cb4a",
+    "open_spiel/games/kuhn_poker.cc": "42a034ec007112b2ff116aca7805c563810b3b7702dc3bcc48d7653090cd483a",
+    "open_spiel/games/kuhn_poker.h": "d9470064c4d9567c6bd844fabd60e1fef86ecc04febed3dc76cddbddb56fbc7a",
+    "open_spiel/games/leduc_poker.cc": "30ea1a5bc0c04cfab9b7f7b340fb8da45a24af9875d67a200feb39620e2af3a0",
+    "open_spiel/games/leduc_poker.h": "14e5b169aa4791d679a236a10f1a1f5cf611ba5f7ebc22cadcc1bf5133bdcabf",
+    "open_spiel/games/sheriff.cc": "d8991cc15425851c3136f8a85f450ed3a6347a5037ed84c70bb209dadd0e3013",
+    "open_spiel/games/sheriff.h": "fec22b472611f382a4e98c2772df719e32d38614d45705e905ede7dbeadd5550",
+    "open_spiel/utils/file.cc": "ffd6bd42f010e1f8bc1c273d557bb0d15b3930610a82bae525d7878f7af2ff18",
+    "open_spiel/utils/file.h": "11f4a98554b33abcc01e53fc2c65563ff8e3bb2a595d56a389aa36ea994d83e3",
+    "open_spiel/utils/serialization.h": "6dcd722bfdb7240b22676a53e4fe4a7cdcb4b6be57153b208d170f96e7f58d52"
+  }
+}

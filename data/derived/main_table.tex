@@ -1,0 +1,41 @@
+\begin{table*}[t]
+\centering
+\caption{Performance after 1000 rounds in the main comparison, averaged over all seven independent self-play environments. OSR gap is the local convergence statistic in Eq.~\eqref{eq:experimental-local-osr}, with cumulative regret divided by \(1000\) and displayed in units of \(10^{-3}\). Value is cumulative average payoff: mbb for poker, rescaled utility score (\%) for Goofspiel, and native utility for Sheriff and Battleship. Runtime is cumulative learner runtime in seconds.}
+\label{tab:main-endpoints}
+\fontsize{8.5}{11}\selectfont
+\renewcommand{\arraystretch}{1.08}
+\setlength{\tabcolsep}{3pt}
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}llrrrrrrr@{}}
+\hline
+Game & Metric & \(\mathrm{SCD}_0\) & \(\mathrm{SCD}_1\) & \(\mathrm{SCD}_2\) & \(\mathrm{SCD}_4\) & \(\mathrm{ACT}_{\rm IN}\) & CSPS & BHV\\
+\hline
+Kuhn Poker & OSR gap \((\cdot10^{-3})\) & 1.725 & 1.725 & 1.725 & 1.725 & 1.725 & 1.725 & 1.725\\
+ & Value & 8.93 & 8.95 & 8.88 & 8.88 & -9.36 & 8.95 & 8.88\\
+ & Runtime (s) & 0.31 & 0.32 & 0.31 & 0.31 & 0.30 & 0.31 & 0.30\\
+\hline
+Leduc Poker & OSR gap \((\cdot10^{-3})\) & 2.401 & 2.193 & 1.909 & 2.074 & 0.730 & 1.905 & 2.074\\
+ & Value & 282.59 & 312.01 & 317.96 & 312.29 & -12.74 & 317.30 & 312.29\\
+ & Runtime (s) & 12.01 & 13.11 & 13.80 & 13.46 & 11.93 & 12.79 & 12.83\\
+\hline
+Goofspiel (4, R) & OSR gap \((\cdot10^{-3})\) & 3.852 & 1.813 & 1.780 & 1.817 & 0.842 & 1.744 & 1.817\\
+ & Value & 56.27 & 57.47 & 57.75 & 57.60 & 50.27 & 57.17 & 57.60\\
+ & Runtime (s) & 49.56 & 53.20 & 56.31 & 54.34 & 50.00 & 52.41 & 52.51\\
+\hline
+Goofspiel (4, $\downarrow$) & OSR gap \((\cdot10^{-3})\) & 1.931 & 1.310 & 1.262 & 1.263 & 1.259 & 1.788 & 1.263\\
+ & Value & 50.07 & 50.02 & 50.00 & 50.00 & 49.99 & 50.03 & 50.00\\
+ & Runtime (s) & 70.10 & 70.58 & 71.02 & 70.75 & 70.24 & 70.37 & 70.41\\
+\hline
+Goofspiel (4, $\uparrow$) & OSR gap \((\cdot10^{-3})\) & 5.998 & 4.808 & 4.402 & 4.523 & 2.964 & 4.742 & 4.523\\
+ & Value & 51.61 & 51.99 & 52.02 & 52.07 & 48.61 & 52.00 & 52.07\\
+ & Runtime (s) & 70.28 & 70.67 & 71.06 & 70.88 & 70.36 & 70.56 & 70.60\\
+\hline
+Sheriff & OSR gap \((\cdot10^{-3})\) & 47.582 & 32.536 & 15.181 & 16.807 & 5.560 & 41.022 & 15.116\\
+ & Value & 0.51082 & 0.65429 & 0.82519 & 0.85737 & 0.29731 & 0.60326 & 0.87485\\
+ & Runtime (s) & 38.06 & 55.00 & 76.99 & 187.15 & 41.24 & 51.17 & 140.06\\
+\hline
+Battleship & OSR gap \((\cdot10^{-3})\) & 6.227 & 2.933 & 2.250 & 2.002 & 2.043 & 5.358 & 2.002\\
+ & Value & 0.01197 & 0.06617 & 0.09295 & 0.09608 & 0.02584 & 0.04095 & 0.09608\\
+ & Runtime (s) & 18.38 & 25.20 & 31.48 & 35.43 & 21.92 & 24.47 & 33.85\\
+\hline
+\end{tabular*}
+\end{table*}

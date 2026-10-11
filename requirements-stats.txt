@@ -1,0 +1,3 @@
+# Optional environment for the manuscript game-statistics scripts.
+-r requirements-reproduce.txt
+open-spiel==1.4

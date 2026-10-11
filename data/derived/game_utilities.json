@@ -1,0 +1,151 @@
+{
+  "source": "data/derived/game_sizes.json",
+  "source_sha256": "b0e6452b3cf8ac6be089f5d9befc6a590363d48994b714be0426042727026570",
+  "pyspiel_sha256": "3276de604078fa3991ad95439bb5cd42da7b7287605aa552349b9265e83e2cf3",
+  "results": [
+    {
+      "game": "kuhn_3p",
+      "definition": "kuhn_poker(players=3)",
+      "declared_utility_type": "Utility.ZERO_SUM",
+      "terminal_count": 312,
+      "terminal_utility_sums": [
+        0
+      ],
+      "example_returns_by_sum": {
+        "0.0": [
+          4,
+          -2,
+          -2
+        ]
+      },
+      "zero_sum": true,
+      "constant_sum": true,
+      "nonconstant_sum": false
+    },
+    {
+      "game": "leduc",
+      "definition": "leduc_poker",
+      "declared_utility_type": "Utility.ZERO_SUM",
+      "terminal_count": 5520,
+      "terminal_utility_sums": [
+        0
+      ],
+      "example_returns_by_sum": {
+        "0.0": [
+          0,
+          0
+        ]
+      },
+      "zero_sum": true,
+      "constant_sum": true,
+      "nonconstant_sum": false
+    },
+    {
+      "game": "random_goofspiel",
+      "definition": "goofspiel(imp_info=True,num_cards=4,points_order=random)",
+      "declared_utility_type": "Utility.ZERO_SUM",
+      "terminal_count": 13824,
+      "terminal_utility_sums": [
+        0
+      ],
+      "example_returns_by_sum": {
+        "0.0": [
+          0,
+          0
+        ]
+      },
+      "zero_sum": true,
+      "constant_sum": true,
+      "nonconstant_sum": false
+    },
+    {
+      "game": "goofspiel_3p",
+      "definition": "goofspiel(imp_info=True,num_cards=4,points_order=descending,players=3)",
+      "declared_utility_type": "Utility.ZERO_SUM",
+      "terminal_count": 13824,
+      "terminal_utility_sums": [
+        0
+      ],
+      "example_returns_by_sum": {
+        "0.0": [
+          0,
+          0,
+          0
+        ]
+      },
+      "zero_sum": true,
+      "constant_sum": true,
+      "nonconstant_sum": false
+    },
+    {
+      "game": "goofspiel_ascending_3p",
+      "definition": "goofspiel(imp_info=True,num_cards=4,points_order=ascending,players=3)",
+      "declared_utility_type": "Utility.ZERO_SUM",
+      "terminal_count": 13824,
+      "terminal_utility_sums": [
+        0
+      ],
+      "example_returns_by_sum": {
+        "0.0": [
+          0,
+          0,
+          0
+        ]
+      },
+      "zero_sum": true,
+      "constant_sum": true,
+      "nonconstant_sum": false
+    },
+    {
+      "game": "sheriff",
+      "definition": "sheriff",
+      "declared_utility_type": "Utility.GENERAL_SUM",
+      "terminal_count": 16384,
+      "terminal_utility_sums": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "example_returns_by_sum": {
+        "0.0": [
+          -6,
+          6
+        ],
+        "3.0": [
+          0,
+          3
+        ],
+        "2.0": [
+          -1,
+          3
+        ],
+        "1.0": [
+          -2,
+          3
+        ]
+      },
+      "zero_sum": false,
+      "constant_sum": false,
+      "nonconstant_sum": true
+    },
+    {
+      "game": "battleship",
+      "definition": "battleship(board_width=3,board_height=2,ship_sizes=[1],ship_values=[1.0],num_shots=2,allow_repeated_shots=False,loss_multiplier=1.0)",
+      "declared_utility_type": "Utility.ZERO_SUM",
+      "terminal_count": 19116,
+      "terminal_utility_sums": [
+        0
+      ],
+      "example_returns_by_sum": {
+        "0.0": [
+          1,
+          -1
+        ]
+      },
+      "zero_sum": true,
+      "constant_sum": true,
+      "nonconstant_sum": false
+    }
+  ]
+}

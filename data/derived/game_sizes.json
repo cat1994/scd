@@ -1,0 +1,175 @@
+[
+  {
+    "game": "kuhn_3p",
+    "definition": "kuhn_poker(players=3)",
+    "parameters": {
+      "players": "3"
+    },
+    "players": 3,
+    "information_sets_per_player": [
+      16,
+      16,
+      16
+    ],
+    "information_sets": 48,
+    "nontrivial_information_sets_per_player": [
+      16,
+      16,
+      16
+    ],
+    "terminal_histories": 312,
+    "histories": 617,
+    "chance_histories": 17,
+    "max_depth": 8,
+    "enumeration_seconds": 0.0011172839440405369
+  },
+  {
+    "game": "leduc",
+    "definition": "leduc_poker",
+    "parameters": {
+      "action_mapping": "False",
+      "players": "2",
+      "suit_isomorphism": "False"
+    },
+    "players": 2,
+    "information_sets_per_player": [
+      468,
+      468
+    ],
+    "information_sets": 936,
+    "nontrivial_information_sets_per_player": [
+      468,
+      468
+    ],
+    "terminal_histories": 5520,
+    "histories": 9457,
+    "chance_histories": 157,
+    "max_depth": 11,
+    "enumeration_seconds": 0.01945896097458899
+  },
+  {
+    "game": "random_goofspiel",
+    "definition": "goofspiel(imp_info=True,num_cards=4,points_order=random)",
+    "parameters": {
+      "game": "{'egocentric': False, 'imp_info': True, 'name': 'goofspiel', 'num_cards': 4, 'num_turns': -1, 'players': 2, 'points_order': 'random', 'returns_type': 'win_loss'}"
+    },
+    "players": 2,
+    "information_sets_per_player": [
+      1804,
+      1804
+    ],
+    "information_sets": 3608,
+    "nontrivial_information_sets_per_player": [
+      1804,
+      1804
+    ],
+    "terminal_histories": 13824,
+    "histories": 26773,
+    "chance_histories": 1793,
+    "max_depth": 9,
+    "enumeration_seconds": 0.0644227599259466
+  },
+  {
+    "game": "goofspiel_3p",
+    "definition": "goofspiel(imp_info=True,num_cards=4,points_order=descending,players=3)",
+    "parameters": {
+      "game": "{'egocentric': False, 'imp_info': True, 'name': 'goofspiel', 'num_cards': 4, 'num_turns': -1, 'players': 3, 'points_order': 'descending', 'returns_type': 'win_loss'}"
+    },
+    "players": 3,
+    "information_sets_per_player": [
+      138,
+      138,
+      138
+    ],
+    "information_sets": 414,
+    "nontrivial_information_sets_per_player": [
+      138,
+      138,
+      138
+    ],
+    "terminal_histories": 13824,
+    "histories": 26773,
+    "chance_histories": 0,
+    "max_depth": 9,
+    "enumeration_seconds": 0.06648449704516679
+  },
+  {
+    "game": "goofspiel_ascending_3p",
+    "definition": "goofspiel(imp_info=True,num_cards=4,points_order=ascending,players=3)",
+    "parameters": {
+      "game": "{'egocentric': False, 'imp_info': True, 'name': 'goofspiel', 'num_cards': 4, 'num_turns': -1, 'players': 3, 'points_order': 'ascending', 'returns_type': 'win_loss'}"
+    },
+    "players": 3,
+    "information_sets_per_player": [
+      138,
+      138,
+      138
+    ],
+    "information_sets": 414,
+    "nontrivial_information_sets_per_player": [
+      138,
+      138,
+      138
+    ],
+    "terminal_histories": 13824,
+    "histories": 26773,
+    "chance_histories": 0,
+    "max_depth": 9,
+    "enumeration_seconds": 0.0672390810213983
+  },
+  {
+    "game": "sheriff",
+    "definition": "sheriff",
+    "parameters": {
+      "item_penalty": "2.0",
+      "item_value": "1.0",
+      "max_bribe": "3",
+      "max_items": "3",
+      "num_rounds": "4",
+      "sheriff_penalty": "3.0"
+    },
+    "players": 2,
+    "information_sets_per_player": [
+      2341,
+      2340
+    ],
+    "information_sets": 4681,
+    "nontrivial_information_sets_per_player": [
+      2341,
+      2340
+    ],
+    "terminal_histories": 16384,
+    "histories": 28085,
+    "chance_histories": 0,
+    "max_depth": 9,
+    "enumeration_seconds": 0.04944801400415599
+  },
+  {
+    "game": "battleship",
+    "definition": "battleship(board_width=3,board_height=2,ship_sizes=[1],ship_values=[1.0],num_shots=2,allow_repeated_shots=False,loss_multiplier=1.0)",
+    "parameters": {
+      "allow_repeated_shots": "False",
+      "board_height": "2",
+      "board_width": "3",
+      "loss_multiplier": "1.0",
+      "num_shots": "2",
+      "ship_sizes": "[1]",
+      "ship_values": "[1.0]"
+    },
+    "players": 2,
+    "information_sets_per_player": [
+      187,
+      751
+    ],
+    "information_sets": 938,
+    "nontrivial_information_sets_per_player": [
+      187,
+      751
+    ],
+    "terminal_histories": 19116,
+    "histories": 23839,
+    "chance_histories": 0,
+    "max_depth": 6,
+    "enumeration_seconds": 0.05226817599032074
+  }
+]

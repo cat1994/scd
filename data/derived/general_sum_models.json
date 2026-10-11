@@ -1,0 +1,53 @@
+{
+  "classification_scope": "Game model permits non-zero-sum utility, not whether the chosen experimental instance is zero-sum.",
+  "user_decision": "2026-10-11: classify Battleship as general-sum; the loss multiplier used in the experiment selects a zero-sum special case.",
+  "general_sum_model_examples": [
+    {
+      "definition": "goofspiel(returns_type=total_points)",
+      "declared_utility": "Utility.GENERAL_SUM"
+    },
+    {
+      "definition": "battleship(loss_multiplier=0.5)",
+      "declared_utility": "Utility.GENERAL_SUM"
+    },
+    {
+      "definition": "sheriff",
+      "declared_utility": "Utility.GENERAL_SUM"
+    }
+  ],
+  "rows": [
+    {
+      "game": "Kuhn Poker",
+      "general_sum_model": false
+    },
+    {
+      "game": "Leduc Poker",
+      "general_sum_model": false
+    },
+    {
+      "game": "Goofspiel (4, R)",
+      "general_sum_model": true
+    },
+    {
+      "game": "Goofspiel (4, $\\downarrow$)",
+      "general_sum_model": true
+    },
+    {
+      "game": "Goofspiel (4, $\\uparrow$)",
+      "general_sum_model": true
+    },
+    {
+      "game": "Sheriff",
+      "general_sum_model": true
+    },
+    {
+      "game": "Battleship",
+      "general_sum_model": true
+    }
+  ],
+  "configured_utility_audit": "game_utilities.json",
+  "primary_sources": [
+    "https://github.com/google-deepmind/open_spiel/blob/master/open_spiel/games/goofspiel/goofspiel.cc",
+    "https://github.com/google-deepmind/open_spiel/blob/master/open_spiel/games/battleship/battleship.cc"
+  ]
+}

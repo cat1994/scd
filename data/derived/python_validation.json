@@ -1,0 +1,35 @@
+{
+  "python": "3.10.12",
+  "packages": {
+    "numpy": "1.26.4",
+    "pandas": "1.5.3",
+    "matplotlib": "3.7.5"
+  },
+  "validation": {
+    "unittest_count": 5,
+    "status": "passed",
+    "dry_run_main_tasks": 7,
+    "dry_run_ablation_tasks": 21,
+    "main_saved_records": 392000,
+    "ablation_saved_records": 126000,
+    "figure_outputs": [
+      "outputs/figures/SCD_main.pdf",
+      "outputs/figures/SCD_main.png",
+      "outputs/figures/SCD_ablation_round.pdf",
+      "outputs/figures/SCD_ablation_round.png",
+      "outputs/figures/SCD_ablation_runtime.pdf",
+      "outputs/figures/SCD_ablation_runtime.png"
+    ],
+    "fresh_execution": "Kuhn 3p, 2 rounds: main and each k=1,2,4 ablation",
+    "skip_existing": "all 4 completed runs reused; re-run without flag refused",
+    "anonymous_sidecars": "no absolute project paths; source content hashes only; no Git HEAD dependency"
+  },
+  "commands": [
+    "python3 bin/run_SCD_main.py --dry-run",
+    "python3 bin/run_SCD_ablation.py --dry-run",
+    "python3 bin/save_data.py --family main",
+    "python3 bin/save_data.py --family ablation",
+    "python3 bin/plot_SCD.py --main-data data/raw/main --ablation-data data/raw/ablation",
+    "python3 -m unittest discover -s tests -v"
+  ]
+}

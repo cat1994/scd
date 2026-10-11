@@ -1,0 +1,109 @@
+{
+  "source": "data/derived/game_sizes.json",
+  "source_sha256": "b0e6452b3cf8ac6be089f5d9befc6a590363d48994b714be0426042727026570",
+  "depth_definition": "max d_I: own predecessor decisions before the current information set; excludes current decision and chance transitions",
+  "pyspiel_sha256": "3276de604078fa3991ad95439bb5cd42da7b7287605aa552349b9265e83e2cf3",
+  "results": [
+    {
+      "game": "kuhn_3p",
+      "definition": "kuhn_poker(players=3)",
+      "players": 3,
+      "information_sets": 48,
+      "states": 617,
+      "terminals": 312,
+      "memory_depth_per_player": [
+        1,
+        1,
+        0
+      ],
+      "memory_depth": 1,
+      "information_set_depths_consistent": true
+    },
+    {
+      "game": "leduc",
+      "definition": "leduc_poker",
+      "players": 2,
+      "information_sets": 936,
+      "states": 9457,
+      "terminals": 5520,
+      "memory_depth_per_player": [
+        3,
+        3
+      ],
+      "memory_depth": 3,
+      "information_set_depths_consistent": true
+    },
+    {
+      "game": "random_goofspiel",
+      "definition": "goofspiel(imp_info=True,num_cards=4,points_order=random)",
+      "players": 2,
+      "information_sets": 3608,
+      "states": 26773,
+      "terminals": 13824,
+      "memory_depth_per_player": [
+        2,
+        2
+      ],
+      "memory_depth": 2,
+      "information_set_depths_consistent": true
+    },
+    {
+      "game": "goofspiel_3p",
+      "definition": "goofspiel(imp_info=True,num_cards=4,points_order=descending,players=3)",
+      "players": 3,
+      "information_sets": 414,
+      "states": 26773,
+      "terminals": 13824,
+      "memory_depth_per_player": [
+        2,
+        2,
+        2
+      ],
+      "memory_depth": 2,
+      "information_set_depths_consistent": true
+    },
+    {
+      "game": "goofspiel_ascending_3p",
+      "definition": "goofspiel(imp_info=True,num_cards=4,points_order=ascending,players=3)",
+      "players": 3,
+      "information_sets": 414,
+      "states": 26773,
+      "terminals": 13824,
+      "memory_depth_per_player": [
+        2,
+        2,
+        2
+      ],
+      "memory_depth": 2,
+      "information_set_depths_consistent": true
+    },
+    {
+      "game": "sheriff",
+      "definition": "sheriff",
+      "players": 2,
+      "information_sets": 4681,
+      "states": 28085,
+      "terminals": 16384,
+      "memory_depth_per_player": [
+        4,
+        3
+      ],
+      "memory_depth": 4,
+      "information_set_depths_consistent": true
+    },
+    {
+      "game": "battleship",
+      "definition": "battleship(board_width=3,board_height=2,ship_sizes=[1],ship_values=[1.0],num_shots=2,allow_repeated_shots=False,loss_multiplier=1.0)",
+      "players": 2,
+      "information_sets": 938,
+      "states": 23839,
+      "terminals": 19116,
+      "memory_depth_per_player": [
+        2,
+        2
+      ],
+      "memory_depth": 2,
+      "information_set_depths_consistent": true
+    }
+  ]
+}

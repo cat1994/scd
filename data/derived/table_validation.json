@@ -1,0 +1,27 @@
+{
+  "raw_files": 28,
+  "main_endpoint_records": 49,
+  "ablation_endpoint_records": 42,
+  "source": "data/raw/main and data/raw/ablation",
+  "comparison": "Recomputed from raw SSV using package parser and aggregation; compared with the paper endpoint records and table fragments.",
+  "numeric_fields_checked": [
+    "osr1000",
+    "payoff_native",
+    "value_display_scale",
+    "runtime_seconds"
+  ],
+  "numeric_values_checked": 364,
+  "maximum_absolute_error": {
+    "osr1000": 1.3877787807814457e-17,
+    "payoff_native": 2.9976021664879227e-15,
+    "value_display_scale": 2.9558577807620168e-12,
+    "runtime_seconds": 2.5579538487363607e-13
+  },
+  "all_formatted_cells_match": true,
+  "all_raw_data_hashes_match": true,
+  "run_identifiers": "Anonymous stable identifiers replace the private archive UUIDs.",
+  "csv_matches_json": true,
+  "both_latex_fragments_match_paper": true,
+  "no_private_absolute_paths_in_derived_json": true,
+  "osr_note": "Reader divides cumulative regret by update count once; table cells multiply by 1000 for 10^-3 units."
+}
